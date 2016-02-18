@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="singleEspanolAviso" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="96af4b42-dc5d-4104-9b3c-c4b933789399">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="1200"/>
+	<parameter name="realPath" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="funcionario" class="java.lang.String"/>
+	<field name="cargoFuncionario" class="java.lang.String"/>
+	<field name="folio" class="java.lang.String"/>
+	<field name="fechaTurnado" class="java.lang.String"/>
+	<field name="remitente" class="java.lang.String"/>
+	<field name="municipio" class="java.lang.String"/>
+	<field name="asunto" class="java.lang.String"/>
+	<field name="presente" class="java.lang.String"/>
+	<field name="indicacion" class="java.lang.String"/>
+	<field name="tipoAsunto" class="java.lang.String"/>
+	<field name="ccp" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="104" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="54197421-978e-4c5a-a529-aca4fbf5cb9b" mode="Opaque" x="295" y="3" width="195" height="13" forecolor="#000000" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MEMORANDUM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="67e2d16d-0a14-4d49-a1de-e1696850bcbc" x="96" y="23" width="190" height="11" forecolor="#999999"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Tahoma" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SECRETARIA EJECUTIVA DE LA GUBERNATURA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="06484754-fe4c-42ce-9c97-9913479d2b3a" x="96" y="36" width="190" height="11" forecolor="#999999"/>
+				<textElement>
+					<font fontName="Tahoma" size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DIRECCION DE CONTROL Y ARCHIVO DE CORRESPONDENCIA]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="c817523f-3d38-47ed-a33c-6856b9ad7dc3" x="94" y="20" width="396" height="3"/>
+			</line>
+			<line>
+				<reportElement uuid="e80e33cf-456f-4b77-9c04-9112cfc0aeac" x="295" y="62" width="195" height="1"/>
+			</line>
+			<line>
+				<reportElement uuid="917386eb-1b9e-4ee2-ab7f-92f5d1b67e94" x="489" y="23" width="1" height="39"/>
+			</line>
+			<line>
+				<reportElement uuid="cf8dc75c-97a1-460b-a2a5-10b89ab47a7d" x="295" y="23" width="1" height="40" forecolor="#CCCCCC" backcolor="#CCCCCC"/>
+			</line>
+			<line>
+				<reportElement uuid="4222242c-d25d-46c2-9fe6-57c62f7f7aa9" x="295" y="23" width="195" height="1" forecolor="#CCCCCC"/>
+			</line>
+			<staticText>
+				<reportElement uuid="1e5a6db3-8f70-4e83-97b9-75f26cb39353" x="300" y="37" width="44" height="11" forecolor="#000000"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[FECHA:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="81394a60-9982-4b53-aa16-df0d2b7c2964" x="11" y="75" width="203" height="16"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{funcionario}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="0626b170-d110-4651-9e44-92fc3c0756cf" x="11" y="91" width="203" height="12" forecolor="#999999"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cargoFuncionario}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="765ccafc-f083-4707-914d-752e69f29652" x="344" y="37" width="115" height="11"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fechaTurnado}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="2fab3712-d5bf-442a-af6a-10906c25f0d7" x="299" y="24" width="165" height="11"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA["2014, AÑO DE OCTAVIO PAZ"]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="f9ec2cdf-c324-4d17-9223-bc0dedd85a83" x="300" y="48" width="44" height="11" forecolor="#000000"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[ASUNTO]]></text>
+			</staticText>
+			<image>
+				<reportElement uuid="9692d890-75ba-482e-a86b-2be32163c9a0" x="3" y="3" width="91" height="72"/>
+				<imageExpression><![CDATA[$P{realPath}+"/sobreMorelos.jpg"]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement uuid="3a667069-a74e-4c92-9b97-4b31f152514f" x="344" y="48" width="100" height="11"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tipoAsunto}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<detail>
+		<band height="640" splitType="Stretch">
+			<image>
+				<reportElement uuid="cd3e4bff-38dd-45fb-a647-a3cc94a87251" x="102" y="31" width="347" height="301"/>
+				<imageExpression><![CDATA[$P{realPath}+"/Morelos.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement uuid="a2376bae-affb-48a7-8e9f-cb152fac9a13" x="11" y="10" width="68" height="14" forecolor="#000000"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[REMITENTE:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="22dfcfc4-9b2e-498d-ae93-3086b7dd1b33" x="11" y="51" width="83" height="37" forecolor="#000000"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[MUNICIPIO Y/O ENTIDAD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="16f61ab0-00e2-4b6b-a1ab-3f82d89862a9" x="214" y="354" width="130" height="14" forecolor="#000000"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[A T E N T A M E N T E]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="55d296dd-cc41-4b6f-8f0e-72d92739f72f" x="163" y="450" width="248" height="41" forecolor="#000000"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[LIC. ELIZABETH ANAYA LAZURTEGUI
+SECRETARIA EJECUTIVA DE LA GUBERNATURA
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="3ef06dfe-4dee-4be6-b710-eb6805d67efa" x="13" y="158" width="83" height="14" forecolor="#000000"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[INDICACIONES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="bce51162-268a-4fab-8d5d-23a827c4d941" x="11" y="88" width="68" height="14" forecolor="#000000"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[ASUNTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="5dbf186c-7fdd-4b79-9f43-7b62f147bafb" x="11" y="512" width="83" height="14" forecolor="#000000"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[C.c.p]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="56f8aaf3-b094-4700-99fd-645354b74382" x="11" y="526" width="83" height="14" forecolor="#000000"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[C.c.p]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="792f42fb-95ca-43f1-a4d4-c19623b7c30d" x="185" y="599" width="207" height="11" forecolor="#999999"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[www.e-morelos.gob.mx]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="94642266-e4a8-4ce1-887b-72d7b32c4811" x="0" y="10" width="3" height="618" forecolor="#CCCCCC"/>
+			</line>
+			<textField>
+				<reportElement uuid="5fc858d1-a92a-4011-82cd-2ce8b9f69e64" x="102" y="10" width="258" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{remitente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="79eb44f7-8386-4005-9879-39798327072a" x="107" y="56" width="212" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{municipio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="bd589c38-6b32-4e79-8806-40f1bf4f25f3" x="107" y="88" width="441" height="50"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{asunto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="9acf8172-9d47-4fe5-a1ed-6d9a8430e31e" x="114" y="158" width="434" height="66"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{indicacion}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="f468c5b3-eb29-437d-ab9a-b899e8f9259f" x="94" y="512" width="317" height="14"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{ccp}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="3" splitType="Stretch"/>
+	</pageFooter>
+</jasperReport>

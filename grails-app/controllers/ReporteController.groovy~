@@ -1,0 +1,731 @@
+
+
+class ReporteController {
+
+    def index() { }
+
+    def reporteSobrePDF(){//////////////reporteController de   CORRESPONDENCIA
+        
+        def documentoInstance = new Documento(params)
+        def realPath = servletContext.getRealPath("images/")
+        params.realPath=realPath
+                
+        def ListadocumentoInstance = Documento.findAll("FROM Documento d where d.id=${params.idDocumento as int}")
+        
+        def depRemitente = ListadocumentoInstance.dependenciaRemitente.id
+        def remit = ListadocumentoInstance.persona.id
+        
+        
+        if(remit){
+            if(ListadocumentoInstance){
+                def resultadoFormateado = ListadocumentoInstance.collect {
+                    [
+                        idDocumento:it.id,
+                        remitente:it.persona.nombre,
+                        direccion: it.persona.calleNumero+" Col. "+it.persona.colonia,
+                        municipio: it.persona.municipio.nombre
+                
+                    ]
+                }
+                //infinitatrend
+                //ftucomunidad
+                
+                chain(controller: "jasper", action: "index", model: [data: resultadoFormateado], params:params)
+            }else{
+//                println"No entramos al reporte porque no hay instancias"
+            }//fin else
+        }//fin Remitente
+        else if(depRemitente){
+            
+            
+            if(ListadocumentoInstance){
+                def resultadoFormateado = ListadocumentoInstance.collect {
+                    [
+                        idDocumento:it.id,
+                        remitente:it.dependenciaRemitente.nombre,
+                        direccion: it.dependenciaRemitente.calleNumero+" Col. "+it.dependenciaRemitente.colonia,
+                        municipio: it.dependenciaRemitente.municipio.nombre
+                
+                    ]
+                }
+                //infinitatrend
+                //ftucomunidad
+                
+                chain(controller: "jasper", action: "index", model: [data: resultadoFormateado], params:params)
+            }else{
+//                println"No entramos al reporte porque no hay instancias"
+            }//fin else
+            
+        }
+        
+    
+    }
+    
+    def obtenerCargoFuncionario(idDependencia){
+        
+        def funcionarioInstance = Persona.executeQuery("select f.cargo FROM Funcionario f where f.dependencia=${idDependencia as int}")                
+        def nombre = funcionarioInstance[0] as String
+                              
+        return nombre
+    }
+    
+    def obtieneTurnadoResponsable(idDocumento){
+        
+        def responsableInstance
+        
+        
+    }
+    def volanteOrdinarioPDF(){
+        
+        def realPath = servletContext.getRealPath("images/reports")
+        params.realPath=realPath
+//        println "realpath es: " + realPath;
+//        println"remitenteDep es: "+params.dependenciaRemitente
+        
+        def remit
+        
+        if(params.dependenciaRemitente){
+            //println"aqui en dependencia"
+            remit=params.dependenciaRemitente
+        }else if(params.remitente && !params.dependenciaRemitente){
+//            println"remitente entonces es=."+params.remitente
+//            println"porque entramos aqui..."
+            remit=params.remitente
+        }
+//        println"el remitente es: "+remit
+        def documentoInstance = Documento.get(params.idDocumento as int)
+        params.fechaCaptura=(documentoInstance.fechaRecibido).format("dd-MMM-yyyy")
+        
+        def turnadoInstance = Turnado.findAll("From Turnado t where t.documento=${params.idDocumento as int}")
+        
+//        println"los turnados son"+turnadoInstance.persona.nombre
+        if(turnadoInstance){
+            def resultadoFormateado = turnadoInstance.collect {
+                [
+                    dependencia:it.dependencia.nombre,
+                    persona:it.persona.nombre,
+                    responsabilidad: it.responsabilidad,
+                    remitente:remit
+                    
+                ]
+            }
+        
+            chain(controller: "jasper", action: "index", model: [data: resultadoFormateado], params:params)
+        }
+            
+    }
+    
+    def volanteMunicipal(){
+        
+        def realPath = servletContext.getRealPath("images/reports")
+        params.realPath=realPath
+//        println "realpath es: " + realPath;
+//        println"remitenteDep es: "+params.dependenciaRemitente
+        
+        def remit
+        
+        if(params.dependenciaRemitente){
+            //println"aqui en dependencia"
+            remit=params.dependenciaRemitente
+        }else if(params.remitente && !params.dependenciaRemitente){
+//            println"remitente entonces es=."+params.remitente
+//            println"porque entramos aqui..."
+            remit=params.remitente
+        }
+//        println"el remitente es: "+remit
+        def documentoInstance = Documento.get(params.idDocumento as int)
+        params.fechaCaptura=(documentoInstance.fechaRecibido).format("dd-MMM-yyyy")
+        
+        def turnadoInstance = Turnado.findAll("From Turnado t where t.documento=${params.idDocumento as int}")
+        int contadorCCP = 0
+        int contadorResponsable = 0
+        ArrayList indiceResp = new ArrayList();
+        ArrayList indiceCCP = new ArrayList();
+                
+        for(int i=0; i<=turnadoInstance.size();i++){
+            if(turnadoInstance.responsabilidad[i]=="RESPONSABLE"){
+                contadorResponsable ++
+                indiceResp.add(i)
+        
+            }
+        }
+        if(contadorResponsable==1){
+            params.nombre = turnadoInstance.persona.nombre[indiceResp.get(0)].toUpperCase()
+             params.cargo =  turnadoInstance.persona.cargo[indiceResp.get(0)].toUpperCase()
+        }
+        if(contadorResponsable==2){
+             params.nombre = turnadoInstance.persona.nombre[indiceResp.get(0)].toUpperCase()
+             params.cargo =  turnadoInstance.persona.cargo[indiceResp.get(0)].toUpperCase()
+             params.nombreDos = turnadoInstance.persona.nombre[indiceResp.get(1)].toUpperCase()
+             params.cargoDos =  turnadoInstance.persona.cargo[indiceResp.get(1)].toUpperCase()
+        }
+        if(contadorResponsable==3){
+             params.nombre = turnadoInstance.persona.nombre[indiceResp.get(0)].toUpperCase()
+             params.cargo =  turnadoInstance.persona.cargo[indiceResp.get(0)].toUpperCase()
+             params.nombreDos = turnadoInstance.persona.nombre[indiceResp.get(1)].toUpperCase()
+             params.cargoDos =  turnadoInstance.persona.cargo[indiceResp.get(1)].toUpperCase()
+             params.nombreTres = turnadoInstance.persona.nombre[indiceResp.get(2)].toUpperCase()
+             params.cargoTres =  turnadoInstance.persona.cargo[indiceResp.get(2)].toUpperCase()
+        }
+        if(contadorResponsable==4){
+             params.nombre = turnadoInstance.persona.nombre[indiceResp.get(0)].toUpperCase()
+             params.cargo =  turnadoInstance.persona.cargo[indiceResp.get(0)].toUpperCase()
+             params.nombreDos = turnadoInstance.persona.nombre[indiceResp.get(1)].toUpperCase()
+             params.cargoDos =  turnadoInstance.persona.cargo[indiceResp.get(1)].toUpperCase()
+             params.nombreTres = turnadoInstance.persona.nombre[indiceResp.get(2)].toUpperCase()
+             params.cargoTres =  turnadoInstance.persona.cargo[indiceResp.get(2)].toUpperCase()
+             params.nombreTres = turnadoInstance.persona.nombre[indiceResp.get(3)].toUpperCase()
+             params.cargoTres =  turnadoInstance.persona.cargo[indiceResp.get(3)].toUpperCase()
+        }
+       
+        for(int i=0; i<=turnadoInstance.size();i++){
+            if(turnadoInstance.responsabilidad[i]=="CCP"){
+                contadorCCP ++
+                indiceCCP.add(i)
+//                println "nombre: " +turnadoInstance.persona.nombre[i]              
+            }
+        }
+       
+        if(contadorCCP==1){
+            params.ccp = "C.c.p " +toTitleCase(turnadoInstance.persona.nombre[indiceCCP.get(0)].toLowerCase())+".-"+toTitleCase(turnadoInstance.persona.cargo[indiceCCP.get(0)].toLowerCase())+" - "+toTitleCase(turnadoInstance.persona.dependencia[indiceCCP.get(0)].toString().toLowerCase())+".-Para su conocimiento"    
+        }
+        if(contadorCCP==2){
+             params.ccp = "C.c.p " +toTitleCase(turnadoInstance.persona.nombre[indiceCCP.get(0)].toLowerCase())+".-"+toTitleCase(turnadoInstance.persona.cargo[indiceCCP.get(0)].toLowerCase())+" - "+toTitleCase(turnadoInstance.persona.dependencia[indiceCCP.get(0)].toString().toLowerCase())+".-Para su conocimiento"       
+             params.ccpDos = "C.c.p " +toTitleCase(turnadoInstance.persona.nombre[indiceCCP.get(1)].toLowerCase())+".-"+toTitleCase(turnadoInstance.persona.cargo[indiceCCP.get(1)].toLowerCase())+" - "+toTitleCase(turnadoInstance.persona.dependencia[indiceCCP.get(1)].toString().toLowerCase())+".-Para su conocimiento"    
+        }
+        if(contadorCCP==3){
+             params.ccp = "C.c.p " +toTitleCase(turnadoInstance.persona.nombre[indiceCCP.get(0)].toLowerCase())+".-"+toTitleCase(turnadoInstance.persona.cargo[indiceCCP.get(0)].toLowerCase())+" - "+toTitleCase(turnadoInstance.persona.dependencia[indiceCCP.get(0)].toString().toLowerCase())+".-Para su conocimiento"       
+             params.ccpDos = "C.c.p " +toTitleCase(turnadoInstance.persona.nombre[indiceCCP.get(1)].toLowerCase())+".-"+toTitleCase(turnadoInstance.persona.cargo[indiceCCP.get(1)].toLowerCase())+" - "+toTitleCase(turnadoInstance.persona.dependencia[indiceCCP.get(1)].toString().toLowerCase())+".-Para su conocimiento"     
+             params.ccpTres = "C.c.p " +toTitleCase(turnadoInstance.persona.nombre[indiceCCP.get(2)].toLowerCase())+".-"+toTitleCase(turnadoInstance.persona.cargo[indiceCCP.get(2)].toLowerCase())+" - "+toTitleCase(turnadoInstance.persona.dependencia[indiceCCP.get(2)].toString().toLowerCase())+".-Para su conocimiento"    
+        }
+        if(contadorCCP==4){
+             params.ccp = "C.c.p " +toTitleCase(turnadoInstance.persona.nombre[indiceCCP.get(0)].toLowerCase())+".-"+toTitleCase(turnadoInstance.persona.cargo[indiceCCP.get(0)].toLowerCase())+" - "+toTitleCase(turnadoInstance.persona.dependencia[indiceCCP.get(0)].toString().toLowerCase())+".-Para su conocimiento"       
+             params.ccpDos = "C.c.p " +toTitleCase(turnadoInstance.persona.nombre[indiceCCP.get(1)].toLowerCase())+".-"+toTitleCase(turnadoInstance.persona.cargo[indiceCCP.get(1)].toLowerCase())+" - "+toTitleCase(turnadoInstance.persona.dependencia[indiceCCP.get(1)].toString().toLowerCase())+".-Para su conocimiento"     
+             params.ccpTres = "C.c.p " +toTitleCase(turnadoInstance.persona.nombre[indiceCCP.get(2)].toLowerCase())+".-"+toTitleCase(turnadoInstance.persona.cargo[indiceCCP.get(2)].toLowerCase())+" - "+toTitleCase(turnadoInstance.persona.dependencia[indiceCCP.get(2)].toString().toLowerCase())+".-Para su conocimiento"               
+             params.ccpCuatro = "C.c.p " +toTitleCase(turnadoInstance.persona.nombre[indiceCCP.get(3)].toLowerCase())+".-"+toTitleCase(turnadoInstance.persona.cargo[indiceCCP.get(3)].toLowerCase())+" - "+toTitleCase(turnadoInstance.persona.dependencia[indiceCCP.get(3)].toString().toLowerCase())+".-Para su conocimiento"    
+        }
+        params.municipioRemitente = documentoInstance.persona.municipio
+        params.estadoRemitente = documentoInstance.persona.estado
+       
+        def lugar
+        if(params.municipioRemitente!=null){
+            lugar = params.municipioRemitente.toString()
+            lugar = lugar +", "+params.estadoRemitente  
+        }
+        else{
+            lugar = documentoInstance.persona.estado
+        }
+        params.municipioRemitente = lugar.toString().toUpperCase()
+        params.cargoPersona = turnadoInstance.persona.cargo[0].toUpperCase()
+        params.cargoRemitente = documentoInstance.persona.cargo.toUpperCase()
+        params.municipio = documentoInstance.persona.municipio.toString().toUpperCase()
+        params.dependenciaRemitente = documentoInstance.persona.dependencia.toString().toUpperCase()
+        if(turnadoInstance.persona.cargo){
+            def resultadoFormateado = turnadoInstance.collect {
+                [
+                    dependencia:it.dependencia.nombre,
+                    persona:it.persona.nombre.toUpperCase(),
+                    responsabilidad: it.responsabilidad,
+                    remitente:remit.toUpperCase()
+                    
+                ]
+            }
+        
+            chain(controller: "jasper", action: "index", model: [data: resultadoFormateado], params:params)
+        }
+            
+    }
+    
+    def volanteOrdinario(){
+        println "no que no"
+        
+        def realPath = servletContext.getRealPath("images/reports")
+        params.realPath=realPath
+//        println "realpath es: " + realPath;
+//        println"remitenteDep es: "+params.dependenciaRemitente
+        
+        def remit
+        
+        if(params.dependenciaRemitente){
+            //println"aqui en dependencia"
+            remit=params.dependenciaRemitente
+        }else if(params.remitente && !params.dependenciaRemitente){
+//            println"remitente entonces es=."+params.remitente
+//            println"porque entramos aqui..."
+            remit=params.remitente
+        }
+        
+        def documentoInstance = Documento.get(params.idDocumento as int)
+        params.fechaCaptura=(documentoInstance.fechaRecibido).format("dd-MMM-yyyy")
+        int contadorCCP = 0
+        int contadorResponsable = 0
+        ArrayList indiceResp = new ArrayList();
+        ArrayList indiceCCP = new ArrayList();
+        def turnadoInstance = Turnado.findAll("From Turnado t where t.documento=${params.idDocumento as int}")
+              
+        for(int i=0; i<=turnadoInstance.size();i++){
+            if(turnadoInstance.responsabilidad[i]=="RESPONSABLE"){
+                contadorResponsable ++
+                indiceResp.add(i)
+        
+            }
+        }
+        if(contadorResponsable==1){
+             params.nombre = turnadoInstance.persona.nombre[indiceResp.get(0)].toUpperCase()
+             params.cargo = turnadoInstance.persona.cargo[indiceResp.get(0)].toUpperCase()
+        }
+        if(contadorResponsable==2){
+             params.nombre = turnadoInstance.persona.nombre[indiceResp.get(0)].toUpperCase()
+             params.cargo =  turnadoInstance.persona.cargo[indiceResp.get(0)].toUpperCase()
+             params.nombreDos = turnadoInstance.persona.nombre[indiceResp.get(1)].toUpperCase()
+             params.cargoDos =  turnadoInstance.persona.cargo[indiceResp.get(1)].toUpperCase()
+        }
+        if(contadorResponsable==3){
+             params.nombre = turnadoInstance.persona.nombre[indiceResp.get(0)].toUpperCase()
+             params.cargo =  turnadoInstance.persona.cargo[indiceResp.get(0)].toUpperCase()
+             params.nombreDos = turnadoInstance.persona.nombre[indiceResp.get(1)].toUpperCase()
+             params.cargoDos =  turnadoInstance.persona.cargo[indiceResp.get(1)].toUpperCase()
+             params.nombreTres = turnadoInstance.persona.nombre[indiceResp.get(2)].toUpperCase()
+             params.cargoTres =  turnadoInstance.persona.cargo[indiceResp.get(2)].toUpperCase()
+        }
+        if(contadorResponsable==4){
+             params.nombre = turnadoInstance.persona.nombre[indiceResp.get(0)].toUpperCase()
+             params.cargo =  turnadoInstance.persona.cargo[indiceResp.get(0)].toUpperCase()
+             params.nombreDos = turnadoInstance.persona.nombre[indiceResp.get(1)].toUpperCase()
+             params.cargoDos =  turnadoInstance.persona.cargo[indiceResp.get(1)].toUpperCase()
+             params.nombreTres = turnadoInstance.persona.nombre[indiceResp.get(2)].toUpperCase()
+             params.cargoTres =  turnadoInstance.persona.cargo[indiceResp.get(2)].toUpperCase()
+             params.nombreCuatro = turnadoInstance.persona.nombre[indiceResp.get(3)].toUpperCase()
+             params.cargoCuatro =  turnadoInstance.persona.cargo[indiceResp.get(3)].toUpperCase()
+        } if(contadorResponsable==5){
+             params.nombre = turnadoInstance.persona.nombre[indiceResp.get(0)].toUpperCase()
+             params.cargo =  turnadoInstance.persona.cargo[indiceResp.get(0)].toUpperCase()
+             params.nombreDos = turnadoInstance.persona.nombre[indiceResp.get(1)].toUpperCase()
+             params.cargoDos =  turnadoInstance.persona.cargo[indiceResp.get(1)].toUpperCase()
+             params.nombreTres = turnadoInstance.persona.nombre[indiceResp.get(2)].toUpperCase()
+             params.cargoTres =  turnadoInstance.persona.cargo[indiceResp.get(2)].toUpperCase()
+             params.nombreCuatro = turnadoInstance.persona.nombre[indiceResp.get(3)].toUpperCase()
+             params.cargoCuatro =  turnadoInstance.persona.cargo[indiceResp.get(3)].toUpperCase()
+			 params.nombreCinco = turnadoInstance.persona.nombre[indiceResp.get(4)].toUpperCase()
+             params.cargoCinco =  turnadoInstance.persona.cargo[indiceResp.get(4)].toUpperCase()
+        }
+       
+        
+        for(int i=0; i<=turnadoInstance.size();i++){
+            if(turnadoInstance.responsabilidad[i]=="CCP"){
+                contadorCCP ++
+                indiceCCP.add(i)
+                  
+            }
+        }
+        
+        if(contadorCCP==1){
+            params.ccp = "C.c.p " +toTitleCase(turnadoInstance.persona.nombre[indiceCCP.get(0)].toLowerCase())+".-"+toTitleCase(turnadoInstance.persona.cargo[indiceCCP.get(0)].toLowerCase())+" - "+toTitleCase(turnadoInstance.persona.dependencia[indiceCCP.get(0)].toString().toLowerCase())+".-Para su conocimiento"    
+        }
+        if(contadorCCP==2){
+             params.ccp = "C.c.p " +toTitleCase(turnadoInstance.persona.nombre[indiceCCP.get(0)].toLowerCase())+".-"+toTitleCase(turnadoInstance.persona.cargo[indiceCCP.get(0)].toLowerCase())+" - "+toTitleCase(turnadoInstance.persona.dependencia[indiceCCP.get(0)].toString().toLowerCase())+".-Para su conocimiento"       
+             params.ccpDos = "C.c.p " +toTitleCase(turnadoInstance.persona.nombre[indiceCCP.get(1)].toLowerCase())+".-"+toTitleCase(turnadoInstance.persona.cargo[indiceCCP.get(1)].toLowerCase())+" - "+toTitleCase(turnadoInstance.persona.dependencia[indiceCCP.get(1)].toString().toLowerCase())+".-Para su conocimiento"    
+        }
+        if(contadorCCP==3){
+             params.ccp = "C.c.p " +toTitleCase(turnadoInstance.persona.nombre[indiceCCP.get(0)].toLowerCase())+".-"+toTitleCase(turnadoInstance.persona.cargo[indiceCCP.get(0)].toLowerCase())+" - "+toTitleCase(turnadoInstance.persona.dependencia[indiceCCP.get(0)].toString().toLowerCase())+".-Para su conocimiento"       
+             params.ccpDos = "C.c.p " +toTitleCase(turnadoInstance.persona.nombre[indiceCCP.get(1)].toLowerCase())+".-"+toTitleCase(turnadoInstance.persona.cargo[indiceCCP.get(1)].toLowerCase())+" - "+toTitleCase(turnadoInstance.persona.dependencia[indiceCCP.get(1)].toString().toLowerCase())+".-Para su conocimiento"     
+             params.ccpTres = "C.c.p " +toTitleCase(turnadoInstance.persona.nombre[indiceCCP.get(2)].toLowerCase())+".-"+toTitleCase(turnadoInstance.persona.cargo[indiceCCP.get(2)].toLowerCase())+" - "+toTitleCase(turnadoInstance.persona.dependencia[indiceCCP.get(2)].toString().toLowerCase())+".-Para su conocimiento"    
+        }
+        if(contadorCCP==4){
+             params.ccp = "C.c.p " +toTitleCase(turnadoInstance.persona.nombre[indiceCCP.get(0)].toLowerCase())+".-"+toTitleCase(turnadoInstance.persona.cargo[indiceCCP.get(0)].toLowerCase())+" - "+toTitleCase(turnadoInstance.persona.dependencia[indiceCCP.get(0)].toString().toLowerCase())+".-Para su conocimiento"       
+             params.ccpDos = "C.c.p " +toTitleCase(turnadoInstance.persona.nombre[indiceCCP.get(1)].toLowerCase())+".-"+toTitleCase(turnadoInstance.persona.cargo[indiceCCP.get(1)].toLowerCase())+" - "+toTitleCase(turnadoInstance.persona.dependencia[indiceCCP.get(1)].toString().toLowerCase())+".-Para su conocimiento"     
+             params.ccpTres = "C.c.p " +toTitleCase(turnadoInstance.persona.nombre[indiceCCP.get(2)].toLowerCase())+".-"+toTitleCase(turnadoInstance.persona.cargo[indiceCCP.get(2)].toLowerCase())+" - "+toTitleCase(turnadoInstance.persona.dependencia[indiceCCP.get(2)].toString().toLowerCase())+".-Para su conocimiento"               
+             params.ccpCuatro = "C.c.p " +toTitleCase(turnadoInstance.persona.nombre[indiceCCP.get(3)].toLowerCase())+".-"+toTitleCase(turnadoInstance.persona.cargo[indiceCCP.get(3)].toLowerCase())+" - "+toTitleCase(turnadoInstance.persona.dependencia[indiceCCP.get(3)].toString().toLowerCase())+".-Para su conocimiento"    
+        }
+        if(contadorCCP==5){
+             params.ccp = "C.c.p " +toTitleCase(turnadoInstance.persona.nombre[indiceCCP.get(0)].toLowerCase())+".-"+toTitleCase(turnadoInstance.persona.cargo[indiceCCP.get(0)].toLowerCase())+" - "+toTitleCase(turnadoInstance.persona.dependencia[indiceCCP.get(0)].toString().toLowerCase())+".-Para su conocimiento"       
+             params.ccpDos = "C.c.p " +toTitleCase(turnadoInstance.persona.nombre[indiceCCP.get(1)].toLowerCase())+".-"+toTitleCase(turnadoInstance.persona.cargo[indiceCCP.get(1)].toLowerCase())+" - "+toTitleCase(turnadoInstance.persona.dependencia[indiceCCP.get(1)].toString().toLowerCase())+".-Para su conocimiento"     
+             params.ccpTres = "C.c.p " +toTitleCase(turnadoInstance.persona.nombre[indiceCCP.get(2)].toLowerCase())+".-"+toTitleCase(turnadoInstance.persona.cargo[indiceCCP.get(2)].toLowerCase())+" - "+toTitleCase(turnadoInstance.persona.dependencia[indiceCCP.get(2)].toString().toLowerCase())+".-Para su conocimiento"               
+             params.ccpCuatro = "C.c.p " +toTitleCase(turnadoInstance.persona.nombre[indiceCCP.get(3)].toLowerCase())+".-"+toTitleCase(turnadoInstance.persona.cargo[indiceCCP.get(3)].toLowerCase())+" - "+toTitleCase(turnadoInstance.persona.dependencia[indiceCCP.get(3)].toString().toLowerCase())+".-Para su conocimiento"    
+             params.ccpCinco = "C.c.p " +toTitleCase(turnadoInstance.persona.nombre[indiceCCP.get(4)].toLowerCase())+".-"+toTitleCase(turnadoInstance.persona.cargo[indiceCCP.get(4)].toLowerCase())+" - "+toTitleCase(turnadoInstance.persona.dependencia[indiceCCP.get(4)].toString().toLowerCase())+".-Para su conocimiento"    
+
+        }
+        def lugar
+        
+        if(documentoInstance.persona!=null){
+            if(documentoInstance.persona.municipio!=null){lugar = documentoInstance.persona.municipio}
+            else{lugar = documentoInstance.persona.estado}   
+        
+            params.cargoRemitente = documentoInstance.persona.cargo.toUpperCase()
+            params.dependenciaRemitente = documentoInstance.persona.dependencia.toString().toUpperCase()        
+            params.cargoPersona = turnadoInstance.persona.cargo[0].toUpperCase()
+        }
+        else{
+            
+            if(documentoInstance.dependenciaRemitente.municipio!=null){
+                lugar = documentoInstance.dependenciaRemitente.municipio}
+            else{lugar = documentoInstance.dependenciaRemitente.estado}    
+           
+        }        
+        
+       
+//        
+//        if(params.municipioRemitente!=null){
+//            lugar = params.municipioRemitente.toString()
+//            println "lugar: "+lugar
+//            lugar = lugar +", "+params.estadoRemitente  
+//        }
+//        else{
+//            lugar = documentoInstance.persona.estado
+//        }
+        params.municipioRemitente = lugar.toString().toUpperCase()
+        println "antes"
+        if(params.signatario=="Lic. Paola Gadsden de la Peza"){println "hola"}
+        
+        if(turnadoInstance.persona.cargo){
+            def resultadoFormateado = turnadoInstance.collect {
+                [
+                    dependencia:it.dependencia.nombre,
+                    persona:it.persona.nombre,
+                    responsabilidad: it.responsabilidad,
+                    remitente:remit.toUpperCase()
+                    
+                ]
+            }
+        
+            chain(controller: "jasper", action: "index", model: [data: resultadoFormateado], params:params)
+        }
+            
+    }
+    
+    def memoPDF(){
+        
+        def realPath = servletContext.getRealPath("images/reports")
+        params.realPath=realPath
+        
+//        println"remitenteDep es: "+params.dependenciaRemitente
+        
+        def remit
+        
+        if(params.dependenciaRemitente){
+//            println"aqui en dependencia"
+            remit=params.dependenciaRemitente
+        }else if(params.remitente && !params.dependenciaRemitente){
+//            println"remitente entonces es=."+params.remitente
+//            println"porque entramos aqui..."
+            remit=params.remitente
+        }
+//        println"el remitente es: "+remit
+        def documentoInstance = Documento.get(params.idDocumento as int)
+        params.fechaCaptura=(documentoInstance.fechaRecibido).format("dd-MMM-yyyy")
+        
+        def turnadoInstance = Turnado.findAll("From Turnado t where t.documento=${params.idDocumento as int}")
+        
+        if(turnadoInstance){
+            def resultadoFormateado = turnadoInstance.collect {
+                [
+                    dependencia:it.dependencia.nombre,
+                    persona:it.persona.nombre,
+                    responsabilidad: it.responsabilidad,
+                    remitente:remit
+                    
+                ]
+            }
+        
+            chain(controller: "jasper", action: "index", model: [data: resultadoFormateado], params:params)
+        }
+            
+    }
+    
+
+    def cartaRespuestaPDF(){
+        
+        def realPath = servletContext.getRealPath("images/reports")
+        params.realPath=realPath
+        
+//        println"remitenteDep es: "+params.dependenciaRemitente
+        
+        def remit
+        ///////////////////aqui determinamos si la dependencia es un remitente o si es una persona
+        if(params.dependenciaRemitente){
+//            println"aqui en dependencia"
+            remit=params.dependenciaRemitente
+        }else if(params.remitente && !params.dependenciaRemitente){
+//            println"remitente entonces es=."+params.remitente
+//            println"porque entramos aqui..."
+            remit=params.remitente
+        }
+//        println"el remitente es: "+remit
+        def documentoInstance = Documento.get(params.idDocumento as int)
+        params.fechaCaptura=(documentoInstance.fechaRecibido).format("dd-MMM-yyyy")
+        
+        def turnadoInstance = Turnado.findAll("From Turnado t where t.documento=${params.idDocumento as int} and t.responsabilidad like'%RESPONSABLE%'")
+        
+        
+        def documentInstance=Documento.executeQuery("Select d.persona FROM Documento d where d.id=${params.idDocumento as int}")
+        def remitentePersona=documentInstance[0]
+        
+        
+        
+        if(remitentePersona){
+        
+        if(turnadoInstance){//mandamos parametros al reporte si el remitente es una persona
+            def resultadoFormateado = turnadoInstance.collect {
+                [
+                    funcionario:it.persona.nombre,
+                    remitente:remit,
+                    cargoFuncionario:it.persona.cargo,
+                    direccion: it.persona.calleNumero+" Col. "+it.persona.colonia,
+                    fechaTurnado: it.documento.fechaCaptura,
+                    folio: it.documento.folio,
+                    municipio: it.persona.municipio.nombre,
+                    presente: it.documento.presente
+                    
+                ]
+            }
+        
+            chain(controller: "jasper", action: "index", model: [data: resultadoFormateado], params:params)
+        }//fin turnado if
+        
+        }else{
+            
+            if(turnadoInstance){//mandamos parametros al reporte si el remitente es una persona
+            def resultadoFormateado = turnadoInstance.collect {
+                [
+                    funcionario:it.persona.nombre,
+                    remitente:remit,
+                    cargoFuncionario:it.persona.cargo,
+                    direccion: it.documento.dependenciaRemitente.calleNumero+" Col. "+it.documento.dependenciaRemitente.colonia,
+                    fechaTurnado: it.documento.fechaCaptura,
+                    folio: it.documento.folio,
+                    municipio: it.documento.dependenciaRemitente.municipio.nombre,
+                    presente: it.documento.presente
+                    
+                ]
+            }
+        
+            chain(controller: "jasper", action: "index", model: [data: resultadoFormateado], params:params)
+        }//fin turnado if
+            
+            
+        }
+        
+            
+    }
+    
+    def cartaDeNoApoyoPDF(){
+        
+        def realPath = servletContext.getRealPath("images/reports")
+        params.realPath=realPath
+        
+//        println"remitenteDep es: "+params.dependenciaRemitente
+        
+        def remit
+        ///////////////////aqui determinamos si la dependencia es un remitente o si es una persona
+        if(params.dependenciaRemitente){
+//            println"aqui en dependencia"
+            remit=params.dependenciaRemitente
+        }else if(params.remitente && !params.dependenciaRemitente){
+//            println"remitente entonces es=."+params.remitente
+//            println"porque entramos aqui..."
+            remit=params.remitente
+        }
+//        println"el remitente es: "+remit
+        def documentoInstance = Documento.get(params.idDocumento as int)
+        params.fechaCaptura=(documentoInstance.fechaRecibido).format("dd-MMM-yyyy")
+        
+        def turnadoInstance = Turnado.findAll("From Turnado t where t.documento=${params.idDocumento as int} and t.responsabilidad like'%RESPONSABLE%'")
+        
+        
+        def documentInstance=Documento.executeQuery("Select d.persona FROM Documento d where d.id=${params.idDocumento as int}")
+        def remitentePersona=documentInstance[0]
+        
+        
+        
+        if(remitentePersona){
+        
+        if(turnadoInstance){//mandamos parametros al reporte si el remitente es una persona
+            def resultadoFormateado = turnadoInstance.collect {
+                [
+                    remitente:remit,
+                    fechaTurnado: it.documento.fechaCaptura,
+                    folio: it.documento.folio,
+                    municipio: it.persona.municipio.nombre,
+                    presente: it.documento.presente
+                    
+                ]
+            }
+        
+            chain(controller: "jasper", action: "index", model: [data: resultadoFormateado], params:params)
+        }//fin turnado if
+        
+        }else{
+            
+            if(turnadoInstance){//mandamos parametros al reporte si el remitente es una persona
+            def resultadoFormateado = turnadoInstance.collect {
+                [
+                    remitente:remit,
+                    fechaTurnado: it.documento.fechaCaptura,
+                    folio: it.documento.folio,
+                    municipio: it.documento.dependenciaRemitente.municipio.nombre,
+                    presente: it.documento.presente
+                    
+                ]
+            }
+        
+            chain(controller: "jasper", action: "index", model: [data: resultadoFormateado], params:params)
+        }//fin turnado if
+            
+            
+        }
+        
+            
+    }
+    
+    def obtieneFuncionario(IdDocumento){
+        
+        def turnadoInstance = Turnado.executeQuery("select t.persona.nombre FROM Turnado t where t.documento=${IdDocumento as int} and t.responsabilidad like'%RESPONSABLE%'")                
+        def nombre = turnadoInstance[0] as String
+                              
+        return nombre
+    }
+
+    def obtieneCargoFuncionario(idDocumento){
+        def turnadoInstance = Turnado.executeQuery("select t.persona.cargo FROM Turnado t where t.documento=${IdDocumento as int} and t.responsabilidad like'%RESPONSABLE%'")                
+        def cargo = turnadoInstance[0] as String
+                              
+        return cargo
+        
+    }
+    //REPORTE DE GIRAS
+    def girasPDF(){
+        
+        int contadorCCP = 0
+        int contadorResponsable = 0
+        ArrayList indiceResp = new ArrayList();
+        ArrayList indiceCCP = new ArrayList();
+        def realPath = servletContext.getRealPath("images/reports")
+        params.realPath=realPath
+//        println "realpath es: " + realPath;
+//        println"remitenteDep es: "+params.dependenciaRemitente
+        
+        def remit
+        
+        if(params.dependenciaRemitente){
+//            println"aqui en dependencia"
+            remit=params.dependenciaRemitente
+        }else if(params.remitente && !params.dependenciaRemitente){
+//            println"remitente entonces es=."+params.remitente
+//            println"porque entramos aqui..."
+            remit=params.remitente
+        }
+       
+        
+        def estado = params.estado;
+//        println "el lugar es: "+lugar
+//        println "el esrado es: "+estado
+//        println"el remitente es: "+remit
+        def documentoInstance = Documento.get(params.idDocumento as int)
+        params.fechaCaptura=(documentoInstance.fechaRecibido).format("dd-MMM-yyyy")
+        def personaInstance = Persona.get(params.person)
+        //Obtener el municipio del remitente//**********
+        
+        params.municipioRemitente = documentoInstance.persona.municipio
+        def lugar = params.municipioRemitente.toString()
+        params.municipioRemitente = lugar +", Morelos."
+        
+      
+        params.municipioRemitente = lugar.toString().toUpperCase()
+        params.cargoRemitente = documentoInstance.persona.cargo.toUpperCase()
+        params.dependenciaRemitente = documentoInstance.persona.dependencia.toString().toUpperCase()
+       
+        
+        
+        
+        def turnadoInstance = Turnado.findAll("From Turnado t where t.documento=${params.idDocumento as int}")
+        //println "cargo de persona"+personaInstance.cargo
+        for(int i=0; i<=turnadoInstance.size();i++){
+            if(turnadoInstance.responsabilidad[i]=="RESPONSABLE"){
+                contadorResponsable ++
+                indiceResp.add(i)
+        
+            }
+        }
+        if(contadorResponsable==1){
+             params.nombre = turnadoInstance.persona.nombre[indiceResp.get(0)].toUpperCase()
+             params.cargo = turnadoInstance.persona.cargo[indiceResp.get(0)].toUpperCase()
+        }
+        if(contadorResponsable==2){
+             params.nombre = turnadoInstance.persona.nombre[indiceResp.get(0)].toUpperCase()
+             params.cargo =  turnadoInstance.persona.cargo[indiceResp.get(0)].toUpperCase()
+             params.nombreDos = turnadoInstance.persona.nombre[indiceResp.get(1)].toUpperCase()
+             params.cargoDos =  turnadoInstance.persona.cargo[indiceResp.get(1)].toUpperCase()
+        }
+         if(contadorResponsable==3){
+             params.nombre = turnadoInstance.persona.nombre[indiceResp.get(0)].toUpperCase()
+             params.cargo =  turnadoInstance.persona.cargo[indiceResp.get(0)].toUpperCase()
+             params.nombreDos = turnadoInstance.persona.nombre[indiceResp.get(1)].toUpperCase()
+             params.cargoDos =  turnadoInstance.persona.cargo[indiceResp.get(1)].toUpperCase()
+             params.nombreTres = turnadoInstance.persona.nombre[indiceResp.get(2)].toUpperCase()
+             params.cargoTres =  turnadoInstance.persona.cargo[indiceResp.get(2)].toUpperCase()
+        }
+        for(int i=0; i<=turnadoInstance.size();i++){
+            if(turnadoInstance.responsabilidad[i]=="CCP"){
+                contadorCCP ++
+                indiceCCP.add(i)
+                  
+            }
+        }
+       
+        if(contadorCCP==1){
+            params.ccp = "C.c.p " +toTitleCase(turnadoInstance.persona.nombre[indiceCCP.get(0)].toLowerCase())+".-"+toTitleCase(turnadoInstance.persona.cargo[indiceCCP.get(0)].toLowerCase())+" - "+toTitleCase(turnadoInstance.persona.dependencia[indiceCCP.get(0)].toString().toLowerCase())+".-Para su conocimiento"    
+        }
+        if(contadorCCP==2){
+             params.ccp = "C.c.p " +toTitleCase(turnadoInstance.persona.nombre[indiceCCP.get(0)].toLowerCase())+".-"+toTitleCase(turnadoInstance.persona.cargo[indiceCCP.get(0)].toLowerCase())+" - "+toTitleCase(turnadoInstance.persona.dependencia[indiceCCP.get(0)].toString().toLowerCase())+".-Para su conocimiento"       
+             params.ccpDos = "C.c.p " +toTitleCase(turnadoInstance.persona.nombre[indiceCCP.get(1)].toLowerCase())+".-"+toTitleCase(turnadoInstance.persona.cargo[indiceCCP.get(1)].toLowerCase())+" - "+toTitleCase(turnadoInstance.persona.dependencia[indiceCCP.get(1)].toString().toLowerCase())+".-Para su conocimiento"    
+        }
+        if(contadorCCP==3){
+             params.ccp = "C.c.p " +toTitleCase(turnadoInstance.persona.nombre[indiceCCP.get(0)].toLowerCase())+".-"+toTitleCase(turnadoInstance.persona.cargo[indiceCCP.get(0)].toLowerCase())+" - "+toTitleCase(turnadoInstance.persona.dependencia[indiceCCP.get(0)].toString().toLowerCase())+".-Para su conocimiento"       
+             params.ccpDos = "C.c.p " +toTitleCase(turnadoInstance.persona.nombre[indiceCCP.get(1)].toLowerCase())+".-"+toTitleCase(turnadoInstance.persona.cargo[indiceCCP.get(1)].toLowerCase())+" - "+toTitleCase(turnadoInstance.persona.dependencia[indiceCCP.get(1)].toString().toLowerCase())+".-Para su conocimiento"     
+             params.ccpTres = "C.c.p " +toTitleCase(turnadoInstance.persona.nombre[indiceCCP.get(2)].toLowerCase())+".-"+toTitleCase(turnadoInstance.persona.cargo[indiceCCP.get(2)].toLowerCase())+" - "+toTitleCase(turnadoInstance.persona.dependencia[indiceCCP.get(2)].toString().toLowerCase())+".-Para su conocimiento"    
+        }
+        if(contadorCCP==4){
+             params.ccp = "C.c.p " +toTitleCase(turnadoInstance.persona.nombre[indiceCCP.get(0)].toLowerCase())+".-"+toTitleCase(turnadoInstance.persona.cargo[indiceCCP.get(0)].toLowerCase())+" - "+toTitleCase(turnadoInstance.persona.dependencia[indiceCCP.get(0)].toString().toLowerCase())+".-Para su conocimiento"       
+             params.ccpDos = "C.c.p " +toTitleCase(turnadoInstance.persona.nombre[indiceCCP.get(1)].toLowerCase())+".-"+toTitleCase(turnadoInstance.persona.cargo[indiceCCP.get(1)].toLowerCase())+" - "+toTitleCase(turnadoInstance.persona.dependencia[indiceCCP.get(1)].toString().toLowerCase())+".-Para su conocimiento"     
+             params.ccpTres = "C.c.p " +toTitleCase(turnadoInstance.persona.nombre[indiceCCP.get(2)].toLowerCase())+".-"+toTitleCase(turnadoInstance.persona.cargo[indiceCCP.get(2)].toLowerCase())+" - "+toTitleCase(turnadoInstance.persona.dependencia[indiceCCP.get(2)].toString().toLowerCase())+".-Para su conocimiento"               
+             params.ccpCuatro = "C.c.p " +toTitleCase(turnadoInstance.persona.nombre[indiceCCP.get(3)].toLowerCase())+".-"+toTitleCase(turnadoInstance.persona.cargo[indiceCCP.get(3)].toLowerCase())+" - "+toTitleCase(turnadoInstance.persona.dependencia[indiceCCP.get(3)].toString().toLowerCase())+".-Para su conocimiento"    
+        }
+//        println "persona cargo "+turnadoInstance.persona.cargo[1]
+//        println"los turnados son"+turnadoInstance.persona.nombre
+        
+        if(turnadoInstance){
+            def resultadoFormateado = turnadoInstance.collect {
+                [
+                    dependencia:it.dependencia.nombre,
+                    persona:it.persona.nombre,
+                    responsabilidad: it.responsabilidad,
+                    cargo:it.persona.cargo,
+                    remitente:remit                                        
+                ]
+            }
+        
+            chain(controller: "jasper", action: "index", model: [data: resultadoFormateado], params:params, lugar:lugar)
+        }
+        
+            
+    }
+    ///***Método para convertir el texto a versales***///
+    public static String toTitleCase(String input) {
+    StringBuilder titleCase = new StringBuilder();
+    boolean nextTitleCase = true;
+
+    for (char c : input.toCharArray()) {
+        if (Character.isSpaceChar(c)) {
+            nextTitleCase = true;
+        } else if (nextTitleCase) {
+            c = Character.toTitleCase(c);
+            nextTitleCase = false;
+        }
+
+        titleCase.append(c);
+    }
+    //    println titleCase.toString()
+    return titleCase.toString();
+}
+    
+}

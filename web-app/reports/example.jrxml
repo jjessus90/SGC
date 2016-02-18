@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="example" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5c91beb6-e3bc-48ba-b120-0e8137701127">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT
+     usuario_sistema.`id` AS usuario_sistema_id,
+     usuario_sistema.`version` AS usuario_sistema_version,
+     usuario_sistema.`account_expired` AS usuario_sistema_account_expired,
+     usuario_sistema.`account_locked` AS usuario_sistema_account_locked,
+     usuario_sistema.`email` AS usuario_sistema_email,
+     usuario_sistema.`enabled` AS usuario_sistema_enabled,
+     usuario_sistema.`nombre_completo` AS usuario_sistema_nombre_completo,
+     usuario_sistema.`passwd` AS usuario_sistema_passwd,
+     usuario_sistema.`password_expired` AS usuario_sistema_password_expired,
+     usuario_sistema.`username` AS usuario_sistema_username
+FROM
+     `usuario_sistema` usuario_sistema]]>
+	</queryString>
+	<field name="usuario_sistema_id" class="java.lang.Long"/>
+	<field name="usuario_sistema_version" class="java.lang.Long"/>
+	<field name="usuario_sistema_account_expired" class="java.lang.Boolean"/>
+	<field name="usuario_sistema_account_locked" class="java.lang.Boolean"/>
+	<field name="usuario_sistema_email" class="java.lang.String"/>
+	<field name="usuario_sistema_enabled" class="java.lang.Boolean"/>
+	<field name="usuario_sistema_nombre_completo" class="java.lang.String"/>
+	<field name="usuario_sistema_passwd" class="java.lang.String"/>
+	<field name="usuario_sistema_password_expired" class="java.lang.Boolean"/>
+	<field name="usuario_sistema_username" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="afe2a9ae-b7ca-44a4-8b6a-4aa3bc9b4c7a" x="0" y="41" width="161" height="20"/>
+				<textElement/>
+				<text><![CDATA[usuario_sistema_email]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement uuid="b2275da5-5f43-4466-af8e-01bfc31383e5" x="0" y="0" width="161" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{usuario_sistema_email}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

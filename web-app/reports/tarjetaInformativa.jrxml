@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="volanteOrdinario-1" language="groovy" pageWidth="510" pageHeight="334" columnWidth="482" leftMargin="28" rightMargin="0" topMargin="22" bottomMargin="0" uuid="96af4b42-dc5d-4104-9b3c-c4b933789399">
+	<property name="ireport.zoom" value="1.996500000000005"/>
+	<property name="ireport.x" value="99"/>
+	<property name="ireport.y" value="61"/>
+	<parameter name="realPath" class="java.lang.String"/>
+	<parameter name="numTarjeta" class="java.lang.String"/>
+	<parameter name="remitente" class="java.lang.String"/>
+	<parameter name="asunto" class="java.lang.String"/>
+	<parameter name="fechaCaptura" class="java.lang.String"/>
+	<parameter name="nombre" class="java.lang.String"/>
+	<parameter name="cargo" class="java.lang.String"/>
+	<parameter name="cargoRemitente" class="java.lang.String"/>
+	<parameter name="dataPerson" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="remitente" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="60">
+			<image>
+				<reportElement uuid="4f06a66d-a4d4-4c15-8d81-3fd06535dfdf" x="1" y="1" width="169" height="56"/>
+				<imageExpression><![CDATA[$P{realPath}+"/seg.jpg"]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement uuid="a29f48b5-2f4a-47ef-bbd9-f0d891f6735b" x="218" y="15" width="204" height="12"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="9" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{fechaCaptura}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="4bf4888a-bb75-4943-b24c-a978db4fcc0a" x="235" y="28" width="210" height="17" forecolor="#000000"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA["Año del Centenario de la Soberana Convención                   Revolucionaria en el Estado de Morelos 1916 - 2016"]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="c94ebf10-ed85-41c8-890b-849cf9012ef4" x="322" y="3" width="100" height="11"/>
+				<textElement textAlignment="Right">
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{numTarjeta}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="59">
+			<staticText>
+				<reportElement uuid="98828ac0-5175-4352-8b45-fe04cf185be0" stretchType="RelativeToTallestObject" mode="Transparent" x="36" y="31" width="27" height="13" forecolor="#000000" backcolor="#000000"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" markup="none">
+					<font fontName="Arial" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Para:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="fe8c0a1f-bfe4-40db-8870-413e1a104bc0" stretchType="RelativeToTallestObject" mode="Transparent" x="35" y="2" width="17" height="13" forecolor="#000000" backcolor="#000000"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" markup="none">
+					<font fontName="Arial" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[De:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="14c7419d-1663-4d26-8389-bf491a95fbd2" positionType="Float" x="54" y="2" width="397" height="13" isRemoveLineWhenBlank="true"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{remitente}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="1e04762a-c8aa-4eff-8251-71ed8f081027" positionType="Float" x="65" y="31" width="385" height="13" isRemoveLineWhenBlank="true"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{nombre}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="a6151ab1-754d-472e-a0ae-74b11347a201" positionType="Float" stretchType="RelativeToTallestObject" x="36" y="44" width="421" height="14" isRemoveLineWhenBlank="true"/>
+				<textElement>
+					<font fontName="Arial" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{cargo}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="9f4862e8-3f0f-4254-a98f-d99918d4810c" stretchType="RelativeToTallestObject" x="35" y="15" width="419" height="14"/>
+				<textElement>
+					<font fontName="Arial" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{cargoRemitente}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="68">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="8389c425-b208-4a81-8501-9e7d269a4625" stretchType="RelativeToBandHeight" isPrintRepeatedValues="false" x="35" y="0" width="420" height="36"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{asunto}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="1d121def-b683-4070-bbea-2b9b3d29723e" positionType="Float" stretchType="RelativeToTallestObject" mode="Transparent" x="35" y="36" width="420" height="14" forecolor="#000000" backcolor="#000000"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle" markup="none">
+					<font fontName="Arial" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Quedo a sus órdenes para cualquier aclaración.]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<columnFooter>
+		<band height="20">
+			<staticText>
+				<reportElement uuid="cc60ade8-94bc-4d54-abbc-f529c1f899ab" stretchType="RelativeToTallestObject" mode="Transparent" x="35" y="-15" width="420" height="14" forecolor="#000000" backcolor="#000000"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle" markup="none">
+					<font fontName="Arial" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Reciba un cordial saludo.]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="88">
+			<image>
+				<reportElement uuid="48ebf041-436b-4177-96c9-52968392ba22" x="0" y="52" width="459" height="16"/>
+				<imageExpression><![CDATA[$P{realPath}+"/plecados.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement uuid="ee79442c-6102-4b26-b5d0-71c0c9cfe5e7" x="355" y="2" width="95" height="50"/>
+				<imageExpression><![CDATA[$P{realPath}+"/nueva-vision.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement uuid="ef1bbad5-2429-4690-920b-46267108cd66" x="35" y="-20" width="163" height="19" forecolor="#000000"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[A T E N T A M E N T E]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+</jasperReport>

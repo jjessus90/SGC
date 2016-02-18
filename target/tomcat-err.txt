@@ -1,0 +1,14 @@
+may 07, 2015 1:19:37 PM org.apache.coyote.AbstractProtocol init
+Información: Initializing ProtocolHandler ["http-bio-8090"]
+may 07, 2015 1:19:38 PM org.apache.catalina.core.StandardService startInternal
+Información: Starting service Tomcat
+may 07, 2015 1:19:38 PM org.apache.catalina.core.StandardEngine startInternal
+Información: Starting Servlet Engine: Apache Tomcat/7.0.39
+may 07, 2015 1:19:39 PM org.apache.catalina.startup.ContextConfig getDefaultWebXmlFragment
+Información: No global web.xml found
+may 07, 2015 1:20:04 PM org.apache.catalina.startup.TaglibUriRule body
+Información: TLD skipped. URI: http://www.springframework.org/tags is already defined
+may 07, 2015 1:20:04 PM org.apache.catalina.core.ApplicationContext log
+Información: No Spring WebApplicationInitializer types detected on classpath
+may 07, 2015 1:20:09 PM org.apache.catalina.core.ApplicationContext log
+Información: Initializing Spring root WebApplicationContext

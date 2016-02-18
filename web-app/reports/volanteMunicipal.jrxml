@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="volanteOrdinario-1" language="groovy" pageWidth="612" pageHeight="792" columnWidth="564" leftMargin="28" rightMargin="20" topMargin="28" bottomMargin="20" uuid="96af4b42-dc5d-4104-9b3c-c4b933789399">
+	<property name="ireport.zoom" value="1.461537825000006"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="192"/>
+	<parameter name="realPath" class="java.lang.String"/>
+	<parameter name="folio" class="java.lang.String"/>
+	<parameter name="presente" class="java.lang.String"/>
+	<parameter name="remitente" class="java.lang.String"/>
+	<parameter name="municipio" class="java.lang.String"/>
+	<parameter name="asunto" class="java.lang.String"/>
+	<parameter name="indicacion" class="java.lang.String"/>
+	<parameter name="fechaCaptura" class="java.lang.String"/>
+	<parameter name="cargoPersona" class="java.lang.String"/>
+	<parameter name="ccp" class="java.lang.String"/>
+	<parameter name="ccpDos" class="java.lang.String"/>
+	<parameter name="ccpTres" class="java.lang.String"/>
+	<parameter name="ccpCuatro" class="java.lang.String"/>
+	<parameter name="cargoRemitente" class="java.lang.String"/>
+	<parameter name="municipioRemitente" class="java.lang.String"/>
+	<parameter name="dependenciaRemitente" class="java.lang.String"/>
+	<parameter name="dataPerson" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="dependencia" class="java.lang.String"/>
+	<field name="persona" class="java.lang.String"/>
+	<field name="responsabilidad" class="java.lang.String"/>
+	<field name="remitente" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="473" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="25247e20-9b0a-43d7-91a1-77b0ce471a99" x="18" y="404" width="103" height="18" forecolor="#000000"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Indicaciones:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="52fab1fa-7564-4c09-9cc1-77108375e00a" x="18" y="287" width="88" height="41" forecolor="#000000"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Municipio y/o Entidad:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="1d121def-b683-4070-bbea-2b9b3d29723e" x="18" y="231" width="103" height="18" forecolor="#000000"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Remitente:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6d54c19d-baa3-4f68-839a-d51f4ee8b523" x="18" y="336" width="88" height="18" forecolor="#000000"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Asunto:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="12a6d318-e1cb-4e4f-9a0b-090ce553491b" stretchType="RelativeToTallestObject" x="18" y="177" width="491" height="43"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{presente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="8389c425-b208-4a81-8501-9e7d269a4625" x="123" y="336" width="386" height="63"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{asunto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="9ced71a7-1ca6-45c2-b358-117b2c90da3b" x="121" y="404" width="388" height="61"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{indicacion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="e589c470-21da-49e8-bc5d-32d522b3328a" x="123" y="230" width="386" height="18"/>
+				<textElement>
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{remitente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="e146a4ae-28ea-4ce3-8d26-910e8de7b1ef" x="19" y="126" width="350" height="19"/>
+				<textElement>
+					<font fontName="Arial" size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{cargoPersona}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="c692f81e-6337-411e-aa81-97f6aced24b6" positionType="Float" x="20" y="106" width="348" height="19"/>
+				<textElement>
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{persona}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="d34dc33d-b4e9-4ca6-8d21-14a5d46d6d1c" x="123" y="287" width="314" height="20"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{municipioRemitente}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement uuid="f62b3da7-f99c-4ed7-b70a-7402e42c943a" x="340" y="10" width="194" height="12"/>
+			</rectangle>
+			<rectangle>
+				<reportElement uuid="61c81b25-b0e2-42ed-9857-e4f073ac3a4c" x="340" y="22" width="194" height="24"/>
+			</rectangle>
+			<textField>
+				<reportElement uuid="5867bda7-a42b-4ac2-b44a-5c30e8f8f1bd" x="327" y="90" width="204" height="15"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{fechaCaptura}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="24ad8ea2-a002-4b1e-8414-34a62182eabd" x="420" y="11" width="109" height="10"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<text><![CDATA[Oficina de la Gubernatura]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="4875fdec-7f23-46fe-9633-6aba0a7a00de" x="341" y="11" width="69" height="10"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<text><![CDATA[Dependencia:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="24451b9b-a574-4661-908c-423637d26ef4" x="420" y="47" width="100" height="11"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{folio}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="dceab1a1-8e7f-4825-9f7c-6d9beab5d951" x="341" y="47" width="44" height="11" forecolor="#000000"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Folio:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c3d8c63a-c00e-4658-884a-0d69da4459d2" x="420" y="23" width="114" height="23"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<text><![CDATA[Dirección de Control de Correspondencia y Archivo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b2717f07-54e2-41d4-bd2a-c8a16e154215" x="341" y="23" width="69" height="11"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<text><![CDATA[Depto:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement uuid="8ff5823d-7545-4976-9356-035628337744" x="340" y="46" width="194" height="12"/>
+			</rectangle>
+			<textField>
+				<reportElement uuid="19606d20-8a68-456e-8a5e-3fe2429b818a" x="420" y="46" width="100" height="11"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{folio}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="285e518e-5d74-4bd7-9667-f8e2a2c7031f" x="341" y="46" width="44" height="11" forecolor="#000000"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Folio:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="524700ef-3f8c-4b69-9a98-9c07e13dd78c" positionType="FixRelativeToBottom" stretchType="RelativeToTallestObject" isPrintRepeatedValues="false" x="123" y="249" width="386" height="19" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true"/>
+				<textElement>
+					<font fontName="Arial" size="9" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{dataPerson}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement uuid="d9dddfa2-29ab-4396-842b-1990c590faaa" x="10" y="11" width="213" height="70"/>
+				<imageExpression><![CDATA[$P{realPath}+"/seg.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement uuid="67ec2671-2667-4c2e-a169-1cefdd6f738c" x="325" y="64" width="212" height="17" forecolor="#000000"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA["Año del Centenario de la Soberana Convención                   Revolucionaria en el Estado de Morelos 1916 - 2016"]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnFooter>
+		<band height="120">
+			<staticText>
+				<reportElement uuid="ef1bbad5-2429-4690-920b-46267108cd66" x="175" y="0" width="235" height="20" forecolor="#000000"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[A T E N T A M E N T E]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="8c42e277-692e-4aa3-aa6d-ca586a1a9a26" positionType="Float" x="140" y="69" width="316" height="43"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Lic. Paola Gadsden de la Peza
+Jefa de la Oficina de la Gubernatura del Estado]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="86" splitType="Stretch">
+			<image>
+				<reportElement uuid="48ebf041-436b-4177-96c9-52968392ba22" x="31" y="66" width="612" height="16"/>
+				<imageExpression><![CDATA[$P{realPath}+"/plecados.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement uuid="ee79442c-6102-4b26-b5d0-71c0c9cfe5e7" x="451" y="16" width="100" height="50"/>
+				<imageExpression><![CDATA[$P{realPath}+"/nueva-vision.png"]]></imageExpression>
+			</image>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="276759e8-fcbd-4a75-9e4b-7dc996938a0a" x="18" y="16" width="437" height="9" isRemoveLineWhenBlank="true"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{ccp}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="88a1f7f9-8e13-4a83-941c-94fde0fa3fef" x="18" y="26" width="437" height="10" isRemoveLineWhenBlank="true"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{ccpDos}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="03c34f48-f541-446f-85d0-440eea47ccad" x="18" y="37" width="437" height="9" isRemoveLineWhenBlank="true"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{ccpTres}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="c10eb1ae-8b8f-42d5-9ded-6402a311e185" x="18" y="47" width="437" height="9" isRemoveLineWhenBlank="true"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{ccpCuatro}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

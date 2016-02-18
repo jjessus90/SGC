@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="giras" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="96af4b42-dc5d-4104-9b3c-c4b933789399">
+	<property name="ireport.zoom" value="1.6076916075000205"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="realPath" class="java.lang.String"/>
+	<parameter name="folio" class="java.lang.String"/>
+	<parameter name="presente" class="java.lang.String"/>
+	<parameter name="remitente" class="java.lang.String"/>
+	<parameter name="municipio" class="java.lang.String"/>
+	<parameter name="asunto" class="java.lang.String"/>
+	<parameter name="indicacion" class="java.lang.String"/>
+	<parameter name="fechaCaptura" class="java.lang.String"/>
+	<parameter name="dependenciaRemitente" class="java.lang.String"/>
+	<parameter name="observacion" class="java.lang.String"/>
+	<parameter name="lugar" class="java.lang.String"/>
+	<parameter name="personaUno" class="java.lang.String"/>
+	<parameter name="cargoUno" class="java.lang.String"/>
+	<parameter name="personaDos" class="java.lang.String"/>
+	<parameter name="cargoDos" class="java.lang.String"/>
+	<parameter name="municipioRemitente" class="java.lang.String"/>
+	<parameter name="ccp" class="java.lang.String"/>
+	<parameter name="ccpDos" class="java.lang.String"/>
+	<parameter name="ccpTres" class="java.lang.String"/>
+	<parameter name="ccpCuatro" class="java.lang.String"/>
+	<parameter name="nombre" class="java.lang.String"/>
+	<parameter name="cargo" class="java.lang.String"/>
+	<parameter name="nombreDos" class="java.lang.String"/>
+	<parameter name="cargoRemitente" class="java.lang.String"/>
+	<parameter name="nombreTres" class="java.lang.String"/>
+	<parameter name="cargoTres" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="dependencia" class="java.lang.String"/>
+	<field name="persona" class="java.lang.String"/>
+	<field name="responsabilidad" class="java.lang.String"/>
+	<field name="remitente" class="java.lang.String"/>
+	<field name="cargo" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="506" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="25247e20-9b0a-43d7-91a1-77b0ce471a99" x="27" y="457" width="113" height="17" forecolor="#000000"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[INDICACIONES:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="52fab1fa-7564-4c09-9cc1-77108375e00a" x="28" y="337" width="95" height="37" forecolor="#000000"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MUNICIPIO Y/O ENTIDAD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="1d121def-b683-4070-bbea-2b9b3d29723e" x="27" y="272" width="83" height="20" forecolor="#000000"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[REMITENTE:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6d54c19d-baa3-4f68-839a-d51f4ee8b523" x="28" y="388" width="68" height="19" forecolor="#000000"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ASUNTO:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="112fb821-2e94-44d5-9f1a-ac7a6a8fb1ef" stretchType="RelativeToTallestObject" x="141" y="337" width="395" height="20"/>
+				<box>
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement>
+					<font fontName="Arial" size="10" isBold="false"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{municipioRemitente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="8389c425-b208-4a81-8501-9e7d269a4625" positionType="Float" x="141" y="388" width="395" height="62"/>
+				<box>
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Justified">
+					<font fontName="Arial" size="8"/>
+					<paragraph lineSpacing="Single" leftIndent="3" rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{asunto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="e589c470-21da-49e8-bc5d-32d522b3328a" x="141" y="274" width="395" height="20"/>
+				<box>
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement>
+					<font fontName="Arial" size="10" isBold="true"/>
+					<paragraph lineSpacing="Single" leftIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{remitente}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="7ae4a259-1135-427c-b671-0d8e6661f604" x="348" y="48" width="171" height="13"/>
+				<textElement>
+					<font fontName="Arial" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Gira de trabajo en el Municipio:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="e3286f86-d1e6-4183-8697-05bc8c48fe84" x="348" y="61" width="103" height="13"/>
+				<textElement>
+					<font fontName="Arial" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{municipio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="a9cad909-4fc3-4c02-acb4-f03123492041" positionType="Float" x="27" y="109" width="509" height="13"/>
+				<textElement>
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{nombre}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="cb308117-bf12-461f-affc-d2d01e8e0e97" positionType="Float" x="27" y="123" width="509" height="14"/>
+				<textElement>
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{cargo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="f4f5f5bf-21f1-4069-83b6-9e4b3278ae8f" positionType="Float" stretchType="RelativeToTallestObject" x="141" y="457" width="395" height="48"/>
+				<box>
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Justified">
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{indicacion}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="58886e80-d61a-4910-8f9d-1e1d20ee57ec" positionType="Float" x="26" y="164" width="509" height="14" isRemoveLineWhenBlank="true"/>
+				<textElement>
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{cargoDos}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="a5db784b-0f6a-4129-be01-26049fffbb27" positionType="Float" x="27" y="144" width="509" height="13" isRemoveLineWhenBlank="true"/>
+				<textElement>
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{nombreDos}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="0f32cd8f-2688-4de3-a49a-cae35a88efe5" x="53" y="84" width="248" height="11" forecolor="#999999"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DIRECCION DE CONTROL DE CORRESPONDENCIA Y ARCHIVO]]></text>
+			</staticText>
+			<image>
+				<reportElement uuid="2a4407ec-3eb4-4f7a-b326-97dc949d13ac" x="63" y="10" width="213" height="70"/>
+				<imageExpression><![CDATA[$P{realPath}+"/seg.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement uuid="9a04eb13-dc44-4608-a14b-bdda45c1a192" x="348" y="35" width="44" height="11" forecolor="#000000"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="7" isBold="false"/>
+				</textElement>
+				<text><![CDATA[FOLIO GSE:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="18799587-f0a3-404d-bde6-4f18fe3c6c89" x="348" y="24" width="188" height="11" forecolor="#999999"/>
+				<textElement>
+					<font fontName="Arial" size="7" isBold="false"/>
+				</textElement>
+				<text><![CDATA[EN SU RESPUESTA FAVOR DE MENCIONAR EL:]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="602acd61-239d-4f17-844e-6e0c362ba980" x="342" y="76" width="195" height="1"/>
+			</line>
+			<textField>
+				<reportElement uuid="45b0e132-2849-4d9b-b52e-c11347c80555" x="396" y="35" width="100" height="11"/>
+				<textElement>
+					<font fontName="Arial" size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{folio}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="033043e5-9123-48bb-903b-d42d213d61e9" mode="Opaque" x="342" y="2" width="195" height="13" forecolor="#000000" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="7" isBold="false"/>
+				</textElement>
+				<text><![CDATA[SOLICITUD]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="dfbf9b7d-3eff-4624-95b2-fa6622c08e81" x="342" y="18" width="195" height="1" forecolor="#CCCCCC"/>
+			</line>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="41df1c5f-ee75-4e51-8dcc-fd94bddc22fd" positionType="FixRelativeToBottom" stretchType="RelativeToTallestObject" isPrintRepeatedValues="false" x="143" y="321" width="393" height="14" isRemoveLineWhenBlank="true"/>
+				<textElement>
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{dependenciaRemitente}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="28234209-fd53-467a-b1d7-ece4bbcd1ad4" positionType="Float" stretchType="RelativeToTallestObject" isPrintRepeatedValues="false" x="143" y="295" width="393" height="25" isRemoveLineWhenBlank="true"/>
+				<textElement>
+					<font fontName="Arial" size="8" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{cargoRemitente}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="c0949cda-37f7-4758-9cde-29e8c46fa69e" x="16" y="215" width="77" height="18" forecolor="#000000"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[PRESENTE:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="52b4841e-d1a0-401d-a7d9-cd20b5b6d9a5" stretchType="RelativeToTallestObject" x="143" y="211" width="393" height="49"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Arial" size="10"/>
+					<paragraph rightIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{presente}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="40ba58c7-907a-4793-824c-a1f19487ede9" positionType="Float" x="27" y="178" width="509" height="13" isRemoveLineWhenBlank="true"/>
+				<textElement>
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{nombreTres}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="10a93b50-a1d1-41c2-b48c-53d983433a1b" positionType="Float" x="27" y="191" width="509" height="14" isRemoveLineWhenBlank="true"/>
+				<textElement>
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{cargoTres}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="c636dfe9-1c05-46dd-8c80-68d0730aaa94" x="327" y="80" width="229" height="11" forecolor="#000000"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA["2015, Año del Generalísimo José María Morelos y Pavón"]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="12" splitType="Stretch">
+			<elementGroup/>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="184" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="5b438482-0148-46b3-89a0-a5edb5a96c35" positionType="Float" x="101" y="62" width="316" height="43"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[LIC. PAOLA GADSDEN DE LA PEZA
+JEFA DE LA OFICINA DE LA GUBERNATURA DEL ESTADO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="3484c06f-6041-4508-a193-990f25f8a642" x="173" y="15" width="194" height="19" forecolor="#000000"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[A T E N T A M E N T E]]></text>
+			</staticText>
+			<image>
+				<reportElement uuid="77edb41b-7e70-4b61-8e32-63d800730873" x="10" y="164" width="536" height="16"/>
+				<imageExpression><![CDATA[$P{realPath}+"/plecados.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement uuid="1f4e3761-7d6f-4f4e-8be5-290fd90c05fe" x="446" y="108" width="100" height="50"/>
+				<imageExpression><![CDATA[$P{realPath}+"/nueva-vision.png"]]></imageExpression>
+			</image>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="cfca623b-a493-4a5b-a2c9-b3bb60c00da0" stretchType="RelativeToBandHeight" x="18" y="120" width="418" height="10" isRemoveLineWhenBlank="true"/>
+				<textElement>
+					<font fontName="Arial" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{ccpDos}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="b3b5cff2-37d6-40e4-92d2-2ccc14f6e9ca" stretchType="RelativeToBandHeight" x="18" y="130" width="418" height="11" isRemoveLineWhenBlank="true"/>
+				<textElement>
+					<font fontName="Arial" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{ccpTres}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="aa685a68-40cf-43f3-8e0b-913b3b6695fe" stretchType="RelativeToBandHeight" x="18" y="141" width="418" height="11" isRemoveLineWhenBlank="true"/>
+				<textElement>
+					<font fontName="Arial" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{ccpCuatro}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="993bc5dd-2bdb-4ad2-89b6-17ffc8139921" stretchType="RelativeToTallestObject" x="18" y="108" width="418" height="12" isRemoveLineWhenBlank="true"/>
+				<textElement>
+					<font fontName="Arial" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{ccp}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

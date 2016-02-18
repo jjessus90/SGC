@@ -1,0 +1,12 @@
+/home/jjessus90/.grails/2.2.2/projects/SGC/tomcat
+/home/jjessus90/.grails/2.2.2/projects/SGC/tomcat/logs
+/home/jjessus90/.grails/2.2.2/projects/SGC/tomcat/logs/specialLog.log
+
+Configuring Spring Security Core ...
+... finished configuring Spring Security Core
+
+Server running. Browse to http://localhost:8090/SGC
+2015-05-07 13:21:28,837 [http-bio-8090-exec-32] ERROR resource.ResourceMeta  - While processing /css/style.css, a resource was required but not found: /images/facebook.png
+2015-05-07 13:21:28,883 [http-bio-8090-exec-32] ERROR resource.ResourceMeta  - While processing /css/style.css, a resource was required but not found: /images/twitter.png
+2015-05-07 13:21:28,991 [http-bio-8090-exec-32] ERROR resource.ResourceMeta  - While processing /css/supersized.css, a resource was required but not found: /images/progress.gif
+2015-05-07 13:21:29,011 [http-bio-8090-exec-32] ERROR resource.ResourceMeta  - While processing /css/supersized.css, a resource was required but not found: /images/progress.gif

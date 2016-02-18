@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="singleEspanolAviso" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="96af4b42-dc5d-4104-9b3c-c4b933789399">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="realPath" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="folio" class="java.lang.String"/>
+	<field name="fechaTurnado" class="java.lang.String"/>
+	<field name="remitente" class="java.lang.String"/>
+	<field name="municipio" class="java.lang.String"/>
+	<field name="presente" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="107" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="67e2d16d-0a14-4d49-a1de-e1696850bcbc" x="90" y="21" width="182" height="19" forecolor="#999999"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[  SECRETARIA EJECUTIVA DE LA GUBERNATURA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="06484754-fe4c-42ce-9c97-9913479d2b3a" x="90" y="40" width="198" height="11" forecolor="#999999"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DIRECCION DE CONTROL Y ARCHIVO DE CORRESPONDENCIA]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="c817523f-3d38-47ed-a33c-6856b9ad7dc3" x="90" y="20" width="400" height="1"/>
+			</line>
+			<staticText>
+				<reportElement uuid="eb2d825c-dfbf-4926-8684-17c731c45d7c" x="301" y="40" width="44" height="11" forecolor="#000000"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Núm_cons:]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="e80e33cf-456f-4b77-9c04-9112cfc0aeac" x="295" y="62" width="195" height="1"/>
+			</line>
+			<line>
+				<reportElement uuid="917386eb-1b9e-4ee2-ab7f-92f5d1b67e94" x="489" y="23" width="1" height="39"/>
+			</line>
+			<line>
+				<reportElement uuid="cf8dc75c-97a1-460b-a2a5-10b89ab47a7d" x="295" y="23" width="1" height="40" forecolor="#CCCCCC" backcolor="#CCCCCC"/>
+			</line>
+			<line>
+				<reportElement uuid="4222242c-d25d-46c2-9fe6-57c62f7f7aa9" x="295" y="23" width="195" height="1" forecolor="#CCCCCC"/>
+			</line>
+			<staticText>
+				<reportElement uuid="1e5a6db3-8f70-4e83-97b9-75f26cb39353" x="325" y="78" width="24" height="11" forecolor="#000000"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="7" isBold="false"/>
+				</textElement>
+				<text><![CDATA[FECHA:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="95071699-9998-43f8-925b-f582b95645e9" x="345" y="40" width="79" height="11"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{folio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="765ccafc-f083-4707-914d-752e69f29652" x="362" y="78" width="62" height="12"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fechaTurnado}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="2fab3712-d5bf-442a-af6a-10906c25f0d7" x="296" y="64" width="165" height="11"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="7"/>
+				</textElement>
+				<text><![CDATA["2014, AÑO DE OCTAVIO PAZ"]]></text>
+			</staticText>
+			<image>
+				<reportElement uuid="325c3bb3-5fc0-4fbe-8ed3-05279c6af2dc" x="3" y="3" width="77" height="63"/>
+				<imageExpression><![CDATA[$P{realPath}+"/sobreMorelos.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<detail>
+		<band height="640" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="63968def-c865-4444-a1d0-c6b860392469" x="11" y="100" width="57" height="14" forecolor="#000000"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="7" isBold="false"/>
+				</textElement>
+				<text><![CDATA[PRESENTE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a2376bae-affb-48a7-8e9f-cb152fac9a13" x="11" y="10" width="68" height="14" forecolor="#000000"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="7" isBold="false"/>
+				</textElement>
+				<text><![CDATA[REMITENTE:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="22dfcfc4-9b2e-498d-ae93-3086b7dd1b33" x="11" y="51" width="83" height="37" forecolor="#000000"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="7" isBold="false"/>
+				</textElement>
+				<text><![CDATA[MUNICIPIO Y/O ENTIDAD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="16f61ab0-00e2-4b6b-a1ab-3f82d89862a9" x="221" y="354" width="130" height="14" forecolor="#000000"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="7" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[A T E N T A M E N T E]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="792f42fb-95ca-43f1-a4d4-c19623b7c30d" x="185" y="599" width="207" height="11" forecolor="#999999"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[www.e-morelos.gob.mx]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="94642266-e4a8-4ce1-887b-72d7b32c4811" x="0" y="10" width="3" height="618" forecolor="#CCCCCC"/>
+			</line>
+			<textField>
+				<reportElement uuid="5fc858d1-a92a-4011-82cd-2ce8b9f69e64" x="107" y="10" width="258" height="20"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{remitente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="79eb44f7-8386-4005-9879-39798327072a" x="107" y="51" width="238" height="20"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{municipio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="3dd3bdce-3b2d-4d81-8a3b-9ab361080089" x="107" y="100" width="454" height="91"/>
+				<textElement textAlignment="Justified">
+					<font fontName="DejaVu Sans" size="7" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{presente}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="920918b6-77e2-459b-8555-4a53832065d3" x="185" y="588" width="207" height="11" forecolor="#000000"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Morelos, Tierra de Libertad y Trabajo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="01deef03-358e-4494-b3d8-9a81b005fe44" x="130" y="214" width="431" height="20"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="7"/>
+				</textElement>
+				<text><![CDATA[Esperando contar con su comprensión, aprovecho la oportunidad para saludarle cordialmente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ddc9fa68-0c9b-438b-9f26-3b7360ee98fd" x="185" y="477" width="207" height="43"/>
+				<textElement textAlignment="Center">
+					<font fontName="DejaVu Sans" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Lic. Elizabeth Anaya Lazurtegui
+SECRETARIA EJECUTIVO DE LA GUBERNATURA
+]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="3" splitType="Stretch"/>
+	</pageFooter>
+</jasperReport>

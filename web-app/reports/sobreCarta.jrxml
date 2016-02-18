@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="sobreCarta" language="groovy" pageWidth="800" pageHeight="300" orientation="Landscape" columnWidth="760" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="707f9e19-4b93-442b-bdc3-e82b5a0d5c39">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="realPath" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="direccion" class="java.lang.String"/>
+	<field name="municipio" class="java.lang.String"/>
+	<field name="remitente" class="java.lang.String"/>
+	<pageHeader>
+		<band height="208" splitType="Stretch">
+			<image>
+				<reportElement uuid="f1e3208e-fba8-4221-a5b6-8c4a022116fc" x="1" y="1" width="145" height="125"/>
+				<imageExpression><![CDATA[$P{realPath}+"/sobreMorelos.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement uuid="d09596b9-565e-4ff3-87e1-c6125f9b2107" x="163" y="29" width="305" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Gobierno del Estado de Morelos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6e0c4e97-a14f-4e1c-a1c6-9a539d118d52" x="163" y="49" width="305" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="14" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Secretaría Ejecutiva de la Gubernatura]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="e1859aaf-15b8-48b5-a35e-eed665eed222" x="229" y="146" width="291" height="20"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{direccion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="03a361d1-3d53-416e-a757-a2acbb53b49c" x="229" y="166" width="291" height="20"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{municipio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="789e8dfa-e6f3-49f1-869d-60de56d7261b" x="229" y="126" width="291" height="20"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{remitente}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnFooter>
+		<band height="21" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="279989de-8a7e-4a29-b4cc-26e3b316d66d" x="302" y="0" width="351" height="20"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Plaza de Armas s/n, Col. Centro, C. P. 62000, Cuernavaca, Morelos, Tel. 01(777) 329 23 23]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+</jasperReport>

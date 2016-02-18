@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="volanteOrdinario-1_subreporte" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="c9f91f33-6741-4358-abda-4ebd9d32a04f">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="idDocumento" class="java.lang.String"/>
+	<parameter name="realPath" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+     persona.`id` AS persona_id,
+     persona.`version` AS persona_version,
+     persona.`nombre` AS persona_nombre,
+     persona.`correo` AS persona_correo,
+     persona.`cargo` AS persona_cargo,
+     persona.`dependencia_id` AS persona_dependencia_id,
+     persona.`municipio_id` AS persona_municipio_id,
+     turnado.`id` AS turnado_id,
+     turnado.`version` AS turnado_version,
+     turnado.`dependencia_id` AS turnado_dependencia_id,
+     turnado.`documento_id` AS turnado_documento_id,
+     turnado.`fecha_terminacion` AS turnado_fecha_terminacion,
+     turnado.`fecha_turnado` AS turnado_fecha_turnado,
+     turnado.`persona_id` AS turnado_persona_id,
+     turnado.`responsabilidad` AS turnado_responsabilidad,
+     turnado.`status` AS turnado_status,
+     turnado.`usuario_sistema_id` AS turnado_usuario_sistema_id,
+     dependencia.`id` AS dependencia_id,
+     dependencia.`version` AS dependencia_version,
+     dependencia.`calle_numero` AS dependencia_calle_numero,
+     dependencia.`colonia` AS dependencia_colonia,
+     dependencia.`cp` AS dependencia_cp,
+     dependencia.`municipio_id` AS dependencia_municipio_id,
+     dependencia.`nombre` AS dependencia_nombre,
+     dependencia.`status` AS dependencia_status,
+     dependencia.`estado_id` AS dependencia_estado_id,
+     dependencia.`tipo_dependencia` AS dependencia_tipo_dependencia
+FROM
+     `persona` persona INNER JOIN `turnado` turnado ON persona.`id` = turnado.`persona_id`
+     INNER JOIN `dependencia` dependencia ON persona.`dependencia_id` = dependencia.`id`
+     AND dependencia.`id` = turnado.`dependencia_id`
+	where turnado.`documento_id`=$P{idDocumento}]]>
+	</queryString>
+	<field name="persona_id" class="java.lang.Long"/>
+	<field name="persona_version" class="java.lang.Long"/>
+	<field name="persona_nombre" class="java.lang.String"/>
+	<field name="persona_correo" class="java.lang.String"/>
+	<field name="persona_cargo" class="java.lang.String"/>
+	<field name="persona_dependencia_id" class="java.lang.Long"/>
+	<field name="persona_municipio_id" class="java.lang.Long"/>
+	<field name="turnado_id" class="java.lang.Long"/>
+	<field name="turnado_version" class="java.lang.Long"/>
+	<field name="turnado_dependencia_id" class="java.lang.Long"/>
+	<field name="turnado_documento_id" class="java.lang.Long"/>
+	<field name="turnado_fecha_terminacion" class="java.sql.Timestamp"/>
+	<field name="turnado_fecha_turnado" class="java.sql.Timestamp"/>
+	<field name="turnado_persona_id" class="java.lang.Long"/>
+	<field name="turnado_responsabilidad" class="java.lang.String"/>
+	<field name="turnado_status" class="java.lang.Boolean"/>
+	<field name="turnado_usuario_sistema_id" class="java.lang.Long"/>
+	<field name="dependencia_id" class="java.lang.Long"/>
+	<field name="dependencia_version" class="java.lang.Long"/>
+	<field name="dependencia_calle_numero" class="java.lang.String"/>
+	<field name="dependencia_colonia" class="java.lang.String"/>
+	<field name="dependencia_cp" class="java.lang.Integer"/>
+	<field name="dependencia_municipio_id" class="java.lang.Long"/>
+	<field name="dependencia_nombre" class="java.lang.String"/>
+	<field name="dependencia_status" class="java.lang.Boolean"/>
+	<field name="dependencia_estado_id" class="java.lang.Long"/>
+	<field name="dependencia_tipo_dependencia" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="27" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="482f7342-d6a9-4b49-bdec-8312612548c5" mode="Opaque" x="0" y="0" width="271" height="27" backcolor="#CCCCCC"/>
+				<box>
+					<pen lineWidth="0.25" lineColor="#CCCCCC"/>
+					<topPen lineWidth="0.25" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="0.25" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="0.25" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="0.25" lineColor="#CCCCCC"/>
+				</box>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Dependencia]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a9ec053d-2e78-4bce-9143-2a2a97a470fe" mode="Opaque" x="271" y="0" width="191" height="27" backcolor="#CCCCCC"/>
+				<box>
+					<pen lineWidth="0.25" lineColor="#CCCCCC"/>
+					<topPen lineWidth="0.25" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="0.25" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="0.25" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="0.25" lineColor="#CCCCCC"/>
+				</box>
+				<textElement/>
+				<text><![CDATA[Persona]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="1472691c-b7cf-4c2d-a1a0-1337684c9623" mode="Opaque" x="462" y="0" width="93" height="27" backcolor="#CCCCCC"/>
+				<box>
+					<pen lineWidth="0.25" lineColor="#CCCCCC"/>
+					<topPen lineWidth="0.25" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="0.25" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="0.25" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="0.25" lineColor="#CCCCCC"/>
+				</box>
+				<textElement/>
+				<text><![CDATA[Responsabilidad]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement uuid="94d6ba83-c50f-49c4-b4b1-7331f945b42e" x="0" y="0" width="271" height="20"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dependencia_nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="4026f913-f5f9-4472-8714-b58dbcaebb41" x="271" y="1" width="191" height="20"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{persona_nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="7a9fb90c-26f3-4e05-a004-f2f15b3fd239" x="462" y="0" width="93" height="20"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{turnado_responsabilidad}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

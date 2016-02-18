@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="singleEspanolAviso" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="96af4b42-dc5d-4104-9b3c-c4b933789399">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="39"/>
+	<parameter name="realPath" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="funcionario" class="java.lang.String"/>
+	<field name="cargoFuncionario" class="java.lang.String"/>
+	<field name="folio" class="java.lang.String"/>
+	<field name="fechaTurnado" class="java.lang.String"/>
+	<field name="remitente" class="java.lang.String"/>
+	<field name="municipio" class="java.lang.String"/>
+	<field name="presente" class="java.lang.String"/>
+	<field name="direccion" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="81" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="67e2d16d-0a14-4d49-a1de-e1696850bcbc" x="90" y="21" width="182" height="19" forecolor="#999999"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[  SECRETARIA EJECUTIVA DE LA GUBERNATURA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="06484754-fe4c-42ce-9c97-9913479d2b3a" x="90" y="40" width="198" height="11" forecolor="#999999"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DIRECCION DE CONTROL Y ARCHIVO DE CORRESPONDENCIA]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="c817523f-3d38-47ed-a33c-6856b9ad7dc3" x="90" y="20" width="400" height="1"/>
+			</line>
+			<staticText>
+				<reportElement uuid="1e5a6db3-8f70-4e83-97b9-75f26cb39353" x="339" y="65" width="24" height="11" forecolor="#000000"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="7" isBold="false"/>
+				</textElement>
+				<text><![CDATA[FECHA:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="765ccafc-f083-4707-914d-752e69f29652" x="375" y="66" width="115" height="12"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fechaTurnado}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="2fab3712-d5bf-442a-af6a-10906c25f0d7" x="310" y="51" width="165" height="11"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="7"/>
+				</textElement>
+				<text><![CDATA["2014, AÑO DE OCTAVIO PAZ"]]></text>
+			</staticText>
+			<image>
+				<reportElement uuid="325c3bb3-5fc0-4fbe-8ed3-05279c6af2dc" x="3" y="3" width="77" height="63"/>
+				<imageExpression><![CDATA[$P{realPath}+"/sobreMorelos.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="282">
+			<textField>
+				<reportElement uuid="dbac41df-fb5f-4551-8071-68b1383e1917" x="21" y="10" width="312" height="20"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="7" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{remitente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="a4286f9e-e043-49c4-848f-9cad5621456c" x="21" y="30" width="251" height="17"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{direccion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="84695ea2-34f8-46de-822e-a8f0a5d6f55a" x="21" y="47" width="238" height="20"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{municipio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="131a8c6f-35a1-4b52-a149-bb7339e3ad15" x="21" y="122" width="507" height="96"/>
+				<textElement textAlignment="Justified">
+					<font fontName="DejaVu Sans" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{presente}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="6434111f-90cc-44d9-822e-187b3d637874" x="21" y="102" width="119" height="20"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Presente]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="5ac87b30-a8c0-40c7-84fa-9ac441f8a3eb" x="21" y="248" width="507" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="DejaVu Sans" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cargoFuncionario}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="0dd8edbb-df44-408f-afaa-681da905eafd" x="21" y="228" width="507" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="DejaVu Sans" size="7" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{funcionario}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<columnFooter>
+		<band height="226">
+			<staticText>
+				<reportElement uuid="457ae962-c827-4563-ab01-19aeefe315a4" x="21" y="58" width="507" height="42" forecolor="#000000"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="7" isBold="false"/>
+				</textElement>
+				<text><![CDATA[NO OMITO MENCIONAR QUE ES INTERÉS DEL SEÑOR GOBERNADOR, ATENDER LAS PETICIONES DE LA
+CIUDADANÍA, SIEMPRE RESPETUOSO DE LA NORMATIVIDAD APLICABLE A CADA CASO.]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="163" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="baa8ad76-ea3f-47de-9f3a-dab15e8a5a99" x="222" y="91" width="130" height="14" forecolor="#000000"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="7" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[A T E N T A M E N T E]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="4d9b2694-7c1e-456c-b810-096e7aa899fd" x="184" y="120" width="207" height="43"/>
+				<textElement textAlignment="Center">
+					<font fontName="DejaVu Sans" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Lic. Elizabeth Anaya Lazurtegui
+SECRETARIA EJECUTIVO DE LA GUBERNATURA
+]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+</jasperReport>

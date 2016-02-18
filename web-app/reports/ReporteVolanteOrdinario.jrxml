@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReporteVolanteOrdinario" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ceb08ecc-b078-4a1f-b381-484fa9770ff6">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="idDocument" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+     documento.`id` AS documento_id,
+     documento.`version` AS documento_version,
+     documento.`asunto` AS documento_asunto,
+     documento.`dirigido` AS documento_dirigido,
+     documento.`fecha_captura` AS documento_fecha_captura,
+     documento.`fecha_recibido` AS documento_fecha_recibido,
+     documento.`folio` AS documento_folio,
+     documento.`municipio_id` AS documento_municipio_id,
+     documento.`num_oficio` AS documento_num_oficio,
+     documento.`persona_id` AS documento_persona_id,
+     documento.`prioridad` AS documento_prioridad,
+     documento.`status` AS documento_status,
+     documento.`tipo_documento_id` AS documento_tipo_documento_id,
+     documento.`upload` AS documento_upload,
+     documento.`usuario_sistema_id` AS documento_usuario_sistema_id,
+     documento.`dependencia_remitente_id` AS documento_dependencia_remitente_id,
+     documento.`estado_id` AS documento_estado_id,
+     documento.`indicacion_id` AS documento_indicacion_id,
+     documento.`indicacion_texto` AS documento_indicacion_texto,
+     documento.`presente` AS documento_presente,
+     dependencia.`id` AS dependencia_id,
+     dependencia.`version` AS dependencia_version,
+     dependencia.`calle_numero` AS dependencia_calle_numero,
+     dependencia.`colonia` AS dependencia_colonia,
+     dependencia.`cp` AS dependencia_cp,
+     dependencia.`municipio_id` AS dependencia_municipio_id,
+     dependencia.`nombre` AS dependencia_nombre,
+     dependencia.`status` AS dependencia_status,
+     dependencia.`estado_id` AS dependencia_estado_id,
+     dependencia.`tipo_dependencia` AS dependencia_tipo_dependencia,
+     turnado.`id` AS turnado_id,
+     turnado.`version` AS turnado_version,
+     turnado.`dependencia_id` AS turnado_dependencia_id,
+     turnado.`documento_id` AS turnado_documento_id,
+     turnado.`fecha_terminacion` AS turnado_fecha_terminacion,
+     turnado.`fecha_turnado` AS turnado_fecha_turnado,
+     turnado.`persona_id` AS turnado_persona_id,
+     turnado.`responsabilidad` AS turnado_responsabilidad,
+     turnado.`status` AS turnado_status,
+     turnado.`usuario_sistema_id` AS turnado_usuario_sistema_id,
+     persona.`id` AS persona_id,
+     persona.`version` AS persona_version,
+     persona.`nombre` AS persona_nombre,
+     persona.`correo` AS persona_correo,
+     persona.`cargo` AS persona_cargo,
+     persona.`dependencia_id` AS persona_dependencia_id,
+     persona.`municipio_id` AS persona_municipio_id,
+     municipio.`id` AS municipio_id,
+     municipio.`version` AS municipio_version,
+     municipio.`nombre` AS municipio_nombre
+FROM
+     `dependencia` dependencia INNER JOIN `documento` documento ON dependencia.`id` = documento.`dependencia_remitente_id`
+     INNER JOIN `turnado` turnado ON documento.`id` = turnado.`documento_id`
+     AND dependencia.`id` = turnado.`dependencia_id`
+     INNER JOIN `persona` persona ON turnado.`persona_id` = persona.`id`
+     AND dependencia.`id` = persona.`dependencia_id`
+     AND persona.`id` = documento.`persona_id`
+     INNER JOIN `municipio` municipio ON persona.`municipio_id` = municipio.`id`
+     AND municipio.`id` = documento.`municipio_id`
+     AND municipio.`id` = dependencia.`municipio_id`]]>
+	</queryString>
+	<field name="documento_id" class="java.lang.Long"/>
+	<field name="documento_version" class="java.lang.Long"/>
+	<field name="documento_asunto" class="java.lang.String"/>
+	<field name="documento_dirigido" class="java.lang.String"/>
+	<field name="documento_fecha_captura" class="java.sql.Timestamp"/>
+	<field name="documento_fecha_recibido" class="java.sql.Timestamp"/>
+	<field name="documento_folio" class="java.lang.String"/>
+	<field name="documento_municipio_id" class="java.lang.Long"/>
+	<field name="documento_num_oficio" class="java.lang.String"/>
+	<field name="documento_persona_id" class="java.lang.Long"/>
+	<field name="documento_prioridad" class="java.lang.String"/>
+	<field name="documento_status" class="java.lang.Integer"/>
+	<field name="documento_tipo_documento_id" class="java.lang.Long"/>
+	<field name="documento_upload" class="java.lang.String"/>
+	<field name="documento_usuario_sistema_id" class="java.lang.Long"/>
+	<field name="documento_dependencia_remitente_id" class="java.lang.Long"/>
+	<field name="documento_estado_id" class="java.lang.Long"/>
+	<field name="documento_indicacion_id" class="java.lang.Long"/>
+	<field name="documento_indicacion_texto" class="java.lang.String"/>
+	<field name="documento_presente" class="java.lang.String"/>
+	<field name="dependencia_id" class="java.lang.Long"/>
+	<field name="dependencia_version" class="java.lang.Long"/>
+	<field name="dependencia_calle_numero" class="java.lang.String"/>
+	<field name="dependencia_colonia" class="java.lang.String"/>
+	<field name="dependencia_cp" class="java.lang.Integer"/>
+	<field name="dependencia_municipio_id" class="java.lang.Long"/>
+	<field name="dependencia_nombre" class="java.lang.String"/>
+	<field name="dependencia_status" class="java.lang.Boolean"/>
+	<field name="dependencia_estado_id" class="java.lang.Long"/>
+	<field name="dependencia_tipo_dependencia" class="java.lang.String"/>
+	<field name="turnado_id" class="java.lang.Long"/>
+	<field name="turnado_version" class="java.lang.Long"/>
+	<field name="turnado_dependencia_id" class="java.lang.Long"/>
+	<field name="turnado_documento_id" class="java.lang.Long"/>
+	<field name="turnado_fecha_terminacion" class="java.sql.Timestamp"/>
+	<field name="turnado_fecha_turnado" class="java.sql.Timestamp"/>
+	<field name="turnado_persona_id" class="java.lang.Long"/>
+	<field name="turnado_responsabilidad" class="java.lang.String"/>
+	<field name="turnado_status" class="java.lang.Boolean"/>
+	<field name="turnado_usuario_sistema_id" class="java.lang.Long"/>
+	<field name="persona_id" class="java.lang.Long"/>
+	<field name="persona_version" class="java.lang.Long"/>
+	<field name="persona_nombre" class="java.lang.String"/>
+	<field name="persona_correo" class="java.lang.String"/>
+	<field name="persona_cargo" class="java.lang.String"/>
+	<field name="persona_dependencia_id" class="java.lang.Long"/>
+	<field name="persona_municipio_id" class="java.lang.Long"/>
+	<field name="municipio_id" class="java.lang.Long"/>
+	<field name="municipio_version" class="java.lang.Long"/>
+	<field name="municipio_nombre" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="119" splitType="Stretch">
+			<line>
+				<reportElement uuid="9a8cefe9-0a2c-479e-a4b1-af69a0e9dead" x="305" y="30" width="1" height="40" forecolor="#CCCCCC" backcolor="#CCCCCC"/>
+			</line>
+			<textField>
+				<reportElement uuid="66005388-f436-491c-a6ac-bd322207b1c4" x="112" y="130" width="309" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{remitente}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="c92b2b1d-80ec-48b0-bb4c-9875431d8d86" x="104" y="550" width="395" height="14"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{ccp}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="429f9200-bfad-4506-a1b0-6aec9cfbd3bd" x="173" y="492" width="248" height="41" forecolor="#000000"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[ELIZABETH ANAYA LAZURTEGUI
+SECRETARIA EJECUTIVO DE LA GUBERNATURA
+]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="3fe246d6-6d98-4305-a157-db804574ca2e" x="10" y="17" width="3" height="618" forecolor="#CCCCCC"/>
+			</line>
+			<staticText>
+				<reportElement uuid="f42bafbc-f304-4a8b-bcd8-913f041297c5" x="21" y="564" width="83" height="14" forecolor="#000000"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[C.c.p]]></text>
+			</staticText>
+			<image>
+				<reportElement uuid="def215b5-829f-407b-a548-1bdcd66cbc1e" x="112" y="38" width="347" height="301"/>
+				<imageExpression><![CDATA[$P{realPath}+"/Morelos.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement uuid="25982045-84e9-440c-aa13-e25315a1db52" x="21" y="173" width="83" height="37" forecolor="#000000"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[MUNICIPIO Y/O ENTIDAD]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="a5778ec6-3c01-47e3-b0d2-5d735c74339c" x="117" y="277" width="441" height="85"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{indicacion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="a75ca569-32bb-4ec9-bba7-c4bf040ec3c5" x="21" y="58" width="252" height="24"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{funcionario}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="3686c7f0-79ce-41f0-bf1c-0981d3e8dacf" x="195" y="606" width="207" height="11" forecolor="#999999"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[www.e-morelos.gob.mx]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="f2a472e3-45a7-4288-966c-f60b85a15aac" x="21" y="222" width="68" height="14" forecolor="#000000"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[ASUNTO]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="df8bfff3-8ec7-4dab-a760-c0e5182a41fa" x="305" y="30" width="195" height="1" forecolor="#CCCCCC"/>
+			</line>
+			<staticText>
+				<reportElement uuid="1b01bf5b-8c8a-4817-8e18-2a4599548e4e" x="311" y="47" width="44" height="11" forecolor="#000000"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="6" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Núm_cons:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="5f6da2de-916c-45dc-9b4e-c878b3bfdbce" x="335" y="85" width="24" height="11" forecolor="#000000"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="6" isBold="false"/>
+				</textElement>
+				<text><![CDATA[FECHA:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="a6e1e0d6-f126-4d5d-8c38-95d82d4f4787" x="359" y="84" width="115" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fechaTurnado}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="3b451a67-449d-401c-9dc8-ffe24c9d43d8" x="21" y="130" width="83" height="14" forecolor="#000000"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[REMITENTE:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="883b17e0-4da5-4672-abbc-3593431c6b52" x="224" y="378" width="130" height="14" forecolor="#000000"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[A T E N T A M E N T E]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="badf59c4-c247-4dd0-87e4-a9305e6cbf30" x="311" y="58" width="44" height="11" forecolor="#000000"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="6" isBold="false"/>
+				</textElement>
+				<text><![CDATA[FOLIO GSE:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="947e0d28-6c79-44d5-914d-1545565498b5" x="57" y="47" width="248" height="11" forecolor="#999999"/>
+				<textElement>
+					<font fontName="Tahoma" size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DIRECCION DE CONTROL Y ARCHIVO DE CORRESPONDENCIA]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="f39944a9-3003-4433-b027-b1d8c1953829" x="104" y="23" width="454" height="84"/>
+				<textElement>
+					<font isBold="true" isItalic="true" isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{presente}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="e371ee1e-cd23-4e7b-914d-77fe3dd534a7" x="499" y="30" width="1" height="39"/>
+			</line>
+			<textField>
+				<reportElement uuid="0605ea67-5e6f-4798-a86c-abc3be1ed2ae" x="117" y="173" width="122" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{municipio}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="1d733b25-77d7-43ec-920b-b20f370cdf3c" x="311" y="36" width="148" height="11" forecolor="#999999"/>
+				<textElement>
+					<font fontName="Tahoma" size="6" isBold="false"/>
+				</textElement>
+				<text><![CDATA[EN SU RESPUESTA FAVOR DE MENCIONAR EL:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="0428f2f6-37c3-4508-b0ec-f4f212a918d9" x="21" y="23" width="57" height="14" forecolor="#000000"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[PRESENTE]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="740a4474-b5fe-4566-b500-a88d00456923" x="355" y="47" width="79" height="11"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{folio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="0727edc1-8af5-4e74-96fa-7ca982adf370" x="21" y="82" width="233" height="12" forecolor="#999999"/>
+				<textElement>
+					<font size="7" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cargoFuncionario}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="bcdba906-4cd1-4ccc-bbc3-2417031a5613" x="57" y="27" width="443" height="1"/>
+			</line>
+			<staticText>
+				<reportElement uuid="885e3f89-3ba3-40f1-8804-cc575b735227" mode="Opaque" x="305" y="10" width="195" height="13" forecolor="#000000" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[SOLICITUD]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="bb3cb5ea-ed33-4753-bcb6-451fc9bcc2d4" x="305" y="69" width="195" height="1"/>
+			</line>
+			<staticText>
+				<reportElement uuid="7a791e43-d353-41ff-8c46-b9161648a5f8" x="57" y="28" width="248" height="19" forecolor="#999999"/>
+				<textElement textAlignment="Left" verticalAlignment="Bottom">
+					<font fontName="Tahoma" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[  SECRETARIA EJECUTIVA DE LA GUBERNATURA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="2f0a14fe-9ea7-4383-926f-cd08d9e6603d" x="21" y="277" width="83" height="14" forecolor="#000000"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[INDICACIONES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="bf2c2972-e534-49d4-ac94-132284d5e623" x="21" y="550" width="83" height="14" forecolor="#000000"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[C.c.p]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="b8b01b26-d924-436d-8910-e57eb6f4ce4b" x="117" y="222" width="441" height="44"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{asunto}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="294" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="260" splitType="Stretch"/>
+	</detail>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="58" splitType="Stretch"/>
+	</summary>
+</jasperReport>
